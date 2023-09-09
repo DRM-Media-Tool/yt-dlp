@@ -7,12 +7,9 @@
 ### 2023.09.09
 
 #### Core changes
-- [Download URL displayed](https://github.com/yt-dlp/yt-dlp/commit/9b9be270c1fc18d6f7d36fb87667a8edc04cf022) by [pukkandan](https://github.com/pukkandan)
 - [Fix HTTP headers and cookie handling](https://github.com/yt-dlp/yt-dlp/commit/6c5211cebeacfc53ad5d5ddf4a659be76039656f) by [bashonly](https://github.com/bashonly), [pukkandan](https://github.com/pukkandan)
 - [Fix `--check-formats`](https://github.com/yt-dlp/yt-dlp/commit/8cb7fc44db010e965d808ee679ef0725cb6e147c) by [pukkandan](https://github.com/pukkandan)
-- [Update build.yml](https://github.com/yt-dlp/yt-dlp/commit/3cca9d92cab261479997507bd98fe5160c4a4edf) by [pukkandan](https://github.com/pukkandan)
 - [`FFmpegFixupM3u8PP` may need to run with ffmpeg](https://github.com/yt-dlp/yt-dlp/commit/f73c11803579889dc8e1c99e25dba9a22fef39d8) by [pukkandan](https://github.com/pukkandan)
-- [update are mapped to This repo](https://github.com/yt-dlp/yt-dlp/commit/c0b411513d9ea18dab31489dc1b5d7381a4c2ecb) by [pukkandan](https://github.com/pukkandan)
 - **compat**
     - [Add `types.NoneType`](https://github.com/yt-dlp/yt-dlp/commit/e0c4db04dc82a699bdabd9821ddc239ebe17d30a) by [pukkandan](https://github.com/pukkandan) (With fixes in [25b6e8f](https://github.com/yt-dlp/yt-dlp/commit/25b6e8f94679b4458550702b46e61249b875a4fd)
 )

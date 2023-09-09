@@ -2,7 +2,7 @@
 
 __version__ = '2023.09.09'
 
-RELEASE_GIT_HEAD = '3cca9d92cab261479997507bd98fe5160c4a4edf'
+RELEASE_GIT_HEAD = '5d0395498d7065aa5e55bac85fa9354b4b0d48eb'
 
 VARIANT = None
 
