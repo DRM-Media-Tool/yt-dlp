@@ -314,6 +314,8 @@ class HotStarIE(HotStarBaseIE):
         self._remove_duplicate_formats(formats)
         for f in formats:
             f.setdefault('http_headers', {}).update(headers)
+        if formats:
+            print("Downloading URL:", formats[0]['url'])
 
         return {
             'id': video_id,
