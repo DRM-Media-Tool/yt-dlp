@@ -10,10 +10,10 @@ on:
         default: stable
         type: string
       unix:
-        default: false
+        default: true
         type: boolean
       linux_arm:
-        default: false
+        default: true
         type: boolean
       macos:
         default: true
@@ -47,11 +47,11 @@ on:
         type: string
       unix:
         description: yt-dlp, yt-dlp.tar.gz, yt-dlp_linux, yt-dlp_linux.zip
-        default: false
+        default: true
         type: boolean
       linux_arm:
         description: yt-dlp_linux_aarch64, yt-dlp_linux_armv7l
-        default: false
+        default: true
         type: boolean
       macos:
         description: yt-dlp_macos, yt-dlp_macos.zip
@@ -319,7 +319,7 @@ jobs:
           Move-Item ./dist/yt-dlp.exe ./dist/yt-dlp_min.exe
           python pyinst.py
           python pyinst.py --onedir
-          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt_win.zip
+          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt-dlp_win.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
@@ -338,9 +338,9 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            dist/yt.exe
-            dist/yt_min.exe
-            dist/yt_win.zip
+            dist/yt-dlp.exe
+            dist/yt-dlp_min.exe
+            dist/yt-dlp_win.zip
 
   windows32:
     if: inputs.windows32
