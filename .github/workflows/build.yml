@@ -13,7 +13,7 @@ on:
         default: true
         type: boolean
       linux_arm:
-        default: true
+        default: false
         type: boolean
       macos:
         default: true
@@ -51,7 +51,7 @@ on:
         type: boolean
       linux_arm:
         description: yt-dlp_linux_aarch64, yt-dlp_linux_armv7l
-        default: true
+        default: false
         type: boolean
       macos:
         description: yt-dlp_macos, yt-dlp_macos.zip
@@ -316,10 +316,10 @@ jobs:
       - name: Build
         run: |
           python setup.py py2exe
-          Move-Item ./dist/yt-dlp.exe ./dist/yt-dlp_min.exe
+          Move-Item ./dist/yt-dlp.exe ./dist/yt.exe
           python pyinst.py
           python pyinst.py --onedir
-          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt-dlp_win.zip
+          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt_win.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
