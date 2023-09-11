@@ -175,8 +175,7 @@ jobs:
           arch: ${{ matrix.architecture }}
           distro: ubuntu18.04 # Standalone executable should be built on minimum supported OS
           dockerRunArgs: --volume "${PWD}/repo:/repo"
-          install:
-            | # Installing Python 3.10 from the Deadsnakes repo raises errors
+          install: | # Installing Python 3.10 from the Deadsnakes repo raises errors
             apt update
             apt -y install zlib1g-dev python3.8 python3.8-dev python3.8-distutils python3-pip
             python3.8 -m pip install -U pip setuptools wheel
@@ -297,49 +296,52 @@ jobs:
             dist/yt-dlp_macos_legacy
 
   windows:
-  if: inputs.windows
-  runs-on: windows-latest
+    if: inputs.windows
+    runs-on: windows-latest
 
-  steps:
-    - uses: actions/checkout@v3
-    - uses: actions/setup-python@v4
-      with: # 3.8 is used for Win7 support
-        python-version: "3.8"
-    - name: Install Requirements
-      run: |
-        python -m pip install -U pip setuptools wheel py2exe
-        pip install -U "https://yt-dlp.github.io/Pyinstaller-Builds/x86_64/pyinstaller-5.8.0-py3-none-any.whl" -r requirements.txt
-    - name: Prepare
-      run: |
-        python devscripts/update-version.py -c ${{ inputs.channel }} ${{ inputs.version }}
-        python devscripts/make_lazy_extractors.py
-    - name: Build
-      run: |
-        python setup.py py2exe
-        Move-Item ./dist/yt-dlp.exe ./dist/yt.exe
-        Move-Item ./dist/yt-dlp_min.exe ./dist/yt_min.exe
-        python pyinst.py
-        python pyinst.py --onedir
-        Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt_win.zip
-    - name: Verify --update-to
-      if: vars.UPDATE_TO_VERIFICATION
-      run: |
-        foreach ($name in @("yt", "yt_min")) {
-          Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
-          $version = & "./dist/${name}.exe" --version
-          & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
-          $downgraded_version = & "./dist/${name}_downgraded.exe" --version
-          if ($version -eq $downgraded_version) {
-            exit 1
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-python@v4
+        with: # 3.8 is used for Win7 support
+          python-version: "3.8"
+      - name: Install Requirements
+        run: | # Custom pyinstaller built with https://github.com/yt-dlp/pyinstaller-builds
+          python -m pip install -U pip setuptools wheel py2exe
+          pip install -U "https://yt-dlp.github.io/Pyinstaller-Builds/x86_64/pyinstaller-5.8.0-py3-none-any.whl" -r requirements.txt
+
+      - name: Prepare
+        run: |
+          python devscripts/update-version.py -c ${{ inputs.channel }} ${{ inputs.version }}
+          python devscripts/make_lazy_extractors.py
+      - name: Build
+        run: |
+          python setup.py py2exe
+          Move-Item ./dist/yt-dlp.exe ./dist/yt_min.exe
+          python pyinst.py
+          python pyinst.py --onedir
+          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt_win.zip
+
+      - name: Verify --update-to
+        if: vars.UPDATE_TO_VERIFICATION
+        run: |
+          foreach ($name in @("yt","yt_min")) {
+            Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
+            $version = & "./dist/${name}.exe" --version
+            & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
+            $downgraded_version = & "./dist/${name}_downgraded.exe" --version
+            if ($version -eq $downgraded_version) {
+              exit 1
+            }
           }
-        }
-    - name: Upload artifacts
-      uses: actions/upload-artifact@v3
-      with:
-        path: |
-          dist/yt.exe
-          dist/yt_min.exe
-          dist/yt_win.zip
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          path: |
+            dist/yt.exe
+            dist/yt_min.exe
+            dist/yt_win.zip
+
 
   windows32:
     if: inputs.windows32
