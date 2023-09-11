@@ -226,25 +226,25 @@ jobs:
       - name: Build
         run: |
           python3 pyinst.py --target-architecture universal2 --onedir
-          (cd ./dist/yt-dlp_macos && zip -r ../yt-dlp_macos.zip .)
+          (cd ./dist/yt-dlp_macos && zip -r ../yt_macos.zip .)
           python3 pyinst.py --target-architecture universal2
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
           chmod +x ./dist/yt-dlp_macos
-          cp ./dist/yt-dlp_macos ./dist/yt-dlp_macos_downgraded
-          version="$(./dist/yt-dlp_macos --version)"
+          cp ./dist/yt-dlp_macos ./dist/yt_macos_downgraded
+          version="$(./dist/yt_macos --version)"
           ./dist/yt-dlp_macos_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
-          downgraded_version="$(./dist/yt-dlp_macos_downgraded --version)"
+          downgraded_version="$(./dist/yt_macos_downgraded --version)"
           [[ "$version" != "$downgraded_version" ]]
 
       - name: Upload artifacts
         uses: actions/upload-artifact@v3
         with:
           path: |
-            dist/yt-dlp_macos
-            dist/yt-dlp_macos.zip
+            dist/yt_macos
+            dist/yt_macos.zip
 
   macos_legacy:
     if: inputs.macos_legacy
@@ -277,12 +277,12 @@ jobs:
       - name: Build
         run: |
           python3 pyinst.py
-          mv dist/yt-dlp_macos dist/yt-dlp_macos_legacy
+          mv dist/yt-dlp_macos dist/yt_macos_legacy
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          chmod +x ./dist/yt-dlp_macos_legacy
+          chmod +x ./dist/yt_macos_legacy
           cp ./dist/yt-dlp_macos_legacy ./dist/yt-dlp_macos_legacy_downgraded
           version="$(./dist/yt-dlp_macos_legacy --version)"
           ./dist/yt-dlp_macos_legacy_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
@@ -293,7 +293,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            dist/yt-dlp_macos_legacy
+            dist/yt_macos_legacy
 
   windows:
     if: inputs.windows
@@ -369,7 +369,7 @@ jobs:
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          foreach ($name in @("yt-dlp_x86")) {
+          foreach ($name in @("yt_x86")) {
             Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
             $version = & "./dist/${name}.exe" --version
             & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
@@ -383,7 +383,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            dist/yt-dlp_x86.exe
+            dist/yt_x86.exe
 
   meta_files:
     if: inputs.meta_files && always() && !cancelled()
