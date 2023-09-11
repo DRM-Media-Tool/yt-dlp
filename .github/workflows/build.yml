@@ -122,15 +122,15 @@ jobs:
           unset LD_LIBRARY_PATH  # Harmful; set by setup-python
           conda activate build
           python pyinst.py --onedir
-          (cd ./dist/yt-dlp_linux && zip -r ../yt_linux.zip .)
+          (cd ./dist/yt-dlp_linux && zip -r ../yt-dlp_linux.zip .)
           python pyinst.py
-          mv ./dist/yt-dlp_linux ./yt_linux
-          mv ./dist/yt-dlp_linux.zip ./yt_linux.zip
+          mv ./dist/yt-dlp_linux ./yt-dlp_linux
+          mv ./dist/yt-dlp_linux.zip ./yt-dlp_linux.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          binaries=("yt-dlp" "yt_linux")
+          binaries=("yt-dlp" "yt-dlp_linux")
           for binary in "${binaries[@]}"; do
             chmod +x ./${binary}
             cp ./${binary} ./${binary}_downgraded
@@ -146,8 +146,8 @@ jobs:
           path: |
             yt-dlp
             yt-dlp.tar.gz
-            yt_linux
-            yt_linux.zip
+            yt-dlp_linux
+            yt-dlp_linux.zip
 
   linux_arm:
     if: inputs.linux_arm
@@ -316,7 +316,6 @@ jobs:
       - name: Build
         run: |
           python setup.py py2exe
-          Move-Item ./dist/yt-dlp.exe ./dist/yt.exe
           Move-Item ./dist/yt-dlp.exe ./dist/yt_min.exe
           python pyinst.py
           python pyinst.py --onedir
