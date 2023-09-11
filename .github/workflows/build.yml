@@ -321,7 +321,7 @@ jobs:
           python pyinst.py
           python pyinst.py --onedir
           Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt_win.zip
-          ls -la ./dist
+          dir ./dist
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
@@ -367,7 +367,7 @@ jobs:
       - name: Build
         run: |
           python pyinst.py
-          ls -la ./dist
+          dir ./dist
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
