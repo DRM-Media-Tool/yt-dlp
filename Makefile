@@ -83,11 +83,11 @@ yt: yt_dlp/*.py yt_dlp/*/*.py
 	done
 	touch -t 200001010101 zip/yt_dlp/*.py zip/yt_dlp/*/*.py
 	mv zip/yt_dlp/__main__.py zip/
-	cd zip ; zip -q ../yt yt_dlp/*.py yt_dlp/*/*.py __main__.py
+	cd zip ; zip -q ../yt-dlp yt_dlp/*.py yt_dlp/*/*.py __main__.py
 	rm -rf zip
-	echo '#!$(PYTHON)' > yt
-	cat yt.zip >> yt
-	rm yt.zip
+	echo '#!$(PYTHON)' > yt-dlp
+	cat yt-dlp.zip >> yt
+	rm yt-dlp.zip
 	chmod a+x yt
 
 README.md: yt_dlp/*.py yt_dlp/*/*.py devscripts/make_readme.py
@@ -132,7 +132,7 @@ yt_dlp/extractor/lazy_extractors.py: devscripts/make_lazy_extractors.py devscrip
 	$(PYTHON) devscripts/make_lazy_extractors.py $@
 
 yt.tar.gz: all
-	@tar -czf yt.tar.gz --transform "s|^|yt/|" --owner 0 --group 0 \
+	@tar -czf yt.tar.gz --transform "s|^|yt-dlp/|" --owner 0 --group 0 \
 		--exclude '*.DS_Store' \
 		--exclude '*.kate-swp' \
 		--exclude '*.pyc' \
