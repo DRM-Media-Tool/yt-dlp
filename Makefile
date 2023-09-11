@@ -75,7 +75,7 @@ offlinetest: codetest
 
 # XXX: This is hard to maintain
 CODE_FOLDERS = yt_dlp yt_dlp/downloader yt_dlp/extractor yt_dlp/postprocessor yt_dlp/compat yt_dlp/compat/urllib yt_dlp/utils yt_dlp/dependencies yt_dlp/networking
-yt-dlp: yt_dlp/*.py yt_dlp/*/*.py
+yt: yt_dlp/*.py yt_dlp/*/*.py
 	mkdir -p zip
 	for d in $(CODE_FOLDERS) ; do \
 	  mkdir -p zip/$$d ;\
@@ -83,12 +83,12 @@ yt-dlp: yt_dlp/*.py yt_dlp/*/*.py
 	done
 	touch -t 200001010101 zip/yt_dlp/*.py zip/yt_dlp/*/*.py
 	mv zip/yt_dlp/__main__.py zip/
-	cd zip ; zip -q ../yt-dlp yt_dlp/*.py yt_dlp/*/*.py __main__.py
+	cd zip ; zip -q ../yt yt_dlp/*.py yt_dlp/*/*.py __main__.py
 	rm -rf zip
-	echo '#!$(PYTHON)' > yt-dlp
-	cat yt-dlp.zip >> yt-dlp
-	rm yt-dlp.zip
-	chmod a+x yt-dlp
+	echo '#!$(PYTHON)' > yt
+	cat yt.zip >> yt
+	rm yt.zip
+	chmod a+x yt
 
 README.md: yt_dlp/*.py yt_dlp/*/*.py devscripts/make_readme.py
 	COLUMNS=80 $(PYTHON) yt_dlp/__main__.py --ignore-config --help | $(PYTHON) devscripts/make_readme.py
@@ -131,8 +131,8 @@ _EXTRACTOR_FILES = $(shell find yt_dlp/extractor -name '*.py' -and -not -name 'l
 yt_dlp/extractor/lazy_extractors.py: devscripts/make_lazy_extractors.py devscripts/lazy_load_template.py $(_EXTRACTOR_FILES)
 	$(PYTHON) devscripts/make_lazy_extractors.py $@
 
-yt-dlp.tar.gz: all
-	@tar -czf yt-dlp.tar.gz --transform "s|^|yt-dlp/|" --owner 0 --group 0 \
+yt.tar.gz: all
+	@tar -czf yt.tar.gz --transform "s|^|yt/|" --owner 0 --group 0 \
 		--exclude '*.DS_Store' \
 		--exclude '*.kate-swp' \
 		--exclude '*.pyc' \
