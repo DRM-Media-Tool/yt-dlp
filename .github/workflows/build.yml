@@ -14,19 +14,18 @@ on:
         type: boolean
       linux_arm:
         default: false
-        default: false
         type: boolean
       macos:
-        default: false
+        default: true
         type: boolean
       macos_legacy:
-        default: false
+        default: true
         type: boolean
       windows:
-        default: false
+        default: true
         type: boolean
       windows32:
-        default: false
+        default: true
         type: boolean
       meta_files:
         default: true
@@ -56,19 +55,19 @@ on:
         type: boolean
       macos:
         description: yt-dlp_macos, yt-dlp_macos.zip
-        default: false
+        default: true
         type: boolean
       macos_legacy:
         description: yt-dlp_macos_legacy
-        default: false
+        default: true
         type: boolean
       windows:
         description: yt-dlp.exe, yt-dlp_min.exe, yt-dlp_win.zip
-        default: false
+        default: true
         type: boolean
       windows32:
         description: yt-dlp_x86.exe
-        default: false
+        default: true
         type: boolean
       meta_files:
         description: SHA2-256SUMS, SHA2-512SUMS, _update_spec
@@ -319,7 +318,7 @@ jobs:
       - name: Build
         run: |
           python setup.py py2exe
-          Move-Item ./dist/yt-dlp.exe ./dist/yt-dlp_min.exe
+          Move-Item ./dist/yt-dlp.exe ./dist/yt_min.exe
           python pyinst.py
           python pyinst.py --onedir
           Compress-Archive -Path ./dist/yt/* -DestinationPath ./dist/yt_win.zip
