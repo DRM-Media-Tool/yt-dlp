@@ -324,7 +324,7 @@ jobs:
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          foreach ($name in @("yt","yt_min")) {
+          foreach ($name in @("yt-dlp","yt-dlp_min")) {
             Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
             $version = & "./dist/${name}.exe" --version
             & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
@@ -370,9 +370,9 @@ jobs:
         if: vars.UPDATE_TO_VERIFICATION
         run: |
           foreach ($name in @("yt-dlp_x86")) {
-            Copy-Item "./dist/${name}.exe" "./dist/yt_x86.exe"  # Rename here
-            $version = & "./dist/yt_x86.exe" --version
-            & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
+            Copy-Item "./dist/${name}.exe" "./dist/yt_x86.exe"
+            $version = & "./dist/yt-dlp_x86.exe" --version
+            & "./dist/yt_x86.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
             $downgraded_version = & "./dist/${name}_downgraded.exe" --version
             if ($version -eq $downgraded_version) {
               exit 1
