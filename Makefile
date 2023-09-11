@@ -131,8 +131,8 @@ _EXTRACTOR_FILES = $(shell find yt_dlp/extractor -name '*.py' -and -not -name 'l
 yt_dlp/extractor/lazy_extractors.py: devscripts/make_lazy_extractors.py devscripts/lazy_load_template.py $(_EXTRACTOR_FILES)
 	$(PYTHON) devscripts/make_lazy_extractors.py $@
 
-yt.tar.gz: all
-	@tar -czf yt.tar.gz --transform "s|^|yt-dlp/|" --owner 0 --group 0 \
+yt-dlp.tar.gz: all
+	@tar -czf yt.tar.gz --transform "s|^|yt/|" --owner 0 --group 0 \
 		--exclude '*.DS_Store' \
 		--exclude '*.kate-swp' \
 		--exclude '*.pyc' \
