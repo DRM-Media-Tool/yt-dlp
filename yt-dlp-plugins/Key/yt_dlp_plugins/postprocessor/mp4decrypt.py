@@ -3,7 +3,7 @@ import os
 import subprocess
 
 
-class MP4DecryptPP(PostProcessor):
+class KeyPP(PostProcessor):
     def __init__(self, downloader=None, **kwargs):
         super().__init__(downloader)
         self._kwargs = kwargs
@@ -12,7 +12,7 @@ class MP4DecryptPP(PostProcessor):
         filepath = info.get('filepath')
 
         if filepath:
-            if 'decryption_key' in self._kwargs:
+            if 'key' in self._kwargs:
                 decryption_key = self._kwargs['decryption_key']
                 success = self.decrypt_single_key(filepath, decryption_key)
                 if success:
@@ -73,4 +73,4 @@ class MP4DecryptPP(PostProcessor):
 
 
 def setup(downloader, **kwargs):
-    downloader.add_post_processor(MP4DecryptPP(downloader, **kwargs))
+    downloader.add_post_processor(KeyPP(downloader, **kwargs))
