@@ -122,15 +122,15 @@ jobs:
           unset LD_LIBRARY_PATH  # Harmful; set by setup-python
           conda activate build
           python pyinst.py --onedir
-          (cd ./dist/yt-dlp_linux && zip -r ../yt-dlp_linux.zip .)
+          (cd ./dist/yt-dlp_linux && zip -r ../yt_linux.zip .)
           python pyinst.py
-          mv ./dist/yt-dlp_linux ./yt-dlp_linux
-          mv ./dist/yt-dlp_linux.zip ./yt-dlp_linux.zip
+          mv ./dist/yt-dlp_linux ./yt_linux
+          mv ./dist/yt-dlp_linux.zip ./yt_linux.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          binaries=("yt-dlp" "yt-dlp_linux")
+          binaries=("yt-dlp" "yt_linux")
           for binary in "${binaries[@]}"; do
             chmod +x ./${binary}
             cp ./${binary} ./${binary}_downgraded
@@ -146,8 +146,8 @@ jobs:
           path: |
             yt-dlp
             yt-dlp.tar.gz
-            yt-dlp_linux
-            yt-dlp_linux.zip
+            yt_linux
+            yt_linux.zip
 
   linux_arm:
     if: inputs.linux_arm
@@ -192,10 +192,10 @@ jobs:
             if ${{ vars.UPDATE_TO_VERIFICATION && 'true' || 'false' }}; then
               arch="${{ (matrix.architecture == 'armv7' && 'armv7l') || matrix.architecture }}"
               chmod +x ./dist/yt-dlp_linux_${arch}
-              cp ./dist/yt-dlp_linux_${arch} ./dist/yt-dlp_linux_${arch}_downgraded
-              version="$(./dist/yt-dlp_linux_${arch} --version)"
-              ./dist/yt-dlp_linux_${arch}_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
-              downgraded_version="$(./dist/yt-dlp_linux_${arch}_downgraded --version)"
+              cp ./dist/yt-dlp_linux_${arch} ./dist/yt_linux_${arch}_downgraded
+              version="$(./dist/yt_linux_${arch} --version)"
+              ./dist/yt_linux_${arch}_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
+              downgraded_version="$(./dist/yt_linux_${arch}_downgraded --version)"
               [[ "$version" != "$downgraded_version" ]]
             fi
 
@@ -233,10 +233,10 @@ jobs:
         if: vars.UPDATE_TO_VERIFICATION
         run: |
           chmod +x ./dist/yt-dlp_macos
-          cp ./dist/yt-dlp_macos ./dist/yt_macos_downgraded
+          cp ./dist/yt-dlp_macos ./dist/yt_macos
           version="$(./dist/yt_macos --version)"
-          ./dist/yt-dlp_macos_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
-          downgraded_version="$(./dist/yt_macos_downgraded --version)"
+          ./dist/yt-dlp -v --update-to yt-dlp/yt-dlp@2023.03.04
+          downgraded_version="$(./dist/yt_macos --version)"
           [[ "$version" != "$downgraded_version" ]]
 
       - name: Upload artifacts
@@ -316,6 +316,7 @@ jobs:
       - name: Build
         run: |
           python setup.py py2exe
+          Move-Item ./dist/yt-dlp.exe ./dist/yt.exe
           Move-Item ./dist/yt-dlp.exe ./dist/yt_min.exe
           python pyinst.py
           python pyinst.py --onedir
@@ -369,9 +370,9 @@ jobs:
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          foreach ($name in @("yt_x86")) {
-            Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
-            $version = & "./dist/${name}.exe" --version
+          foreach ($name in @("yt-dlp_x86")) {
+            Copy-Item "./dist/${name}.exe" "./dist/yt_x86.exe"  # Rename here
+            $version = & "./dist/yt_x86.exe" --version
             & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
             $downgraded_version = & "./dist/${name}_downgraded.exe" --version
             if ($version -eq $downgraded_version) {
