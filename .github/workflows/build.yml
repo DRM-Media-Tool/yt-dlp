@@ -55,19 +55,19 @@ on:
         type: boolean
       macos:
         description: yt-dlp_macos, yt-dlp_macos.zip
-        default: true
+        default: false
         type: boolean
       macos_legacy:
         description: yt-dlp_macos_legacy
-        default: true
+        default: false
         type: boolean
       windows:
         description: yt-dlp.exe, yt-dlp_min.exe, yt-dlp_win.zip
-        default: true
+        default: false
         type: boolean
       windows32:
         description: yt-dlp_x86.exe
-        default: true
+        default: false
         type: boolean
       meta_files:
         description: SHA2-256SUMS, SHA2-512SUMS, _update_spec
@@ -126,6 +126,7 @@ jobs:
           python pyinst.py
           mv ./dist/yt_linux ./yt_linux
           mv ./dist/yt_linux.zip ./yt_linux.zip
+          ls -la ./dist
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
