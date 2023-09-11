@@ -317,7 +317,7 @@ jobs:
       - name: Build
         run: |
           python setup.py py2exe
-          Move-Item ./dist/yt.exe ./dist/yt_min.exe
+          Move-Item ./dist/yt-dlp.exe ./dist/yt_min.exe
           python pyinst.py
           python pyinst.py --onedir
           Compress-Archive -Path ./dist/yt/* -DestinationPath ./dist/yt_win.zip
