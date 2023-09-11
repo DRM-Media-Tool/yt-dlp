@@ -121,5 +121,5 @@ yt-dlp.zip
 */extractor/lazy_extractors.py
 
 # Plugins
-ytdlp_plugins/
-yt-dlp-plugins
+# ytdlp_plugins/
+# yt-dlp-plugins

@@ -14,6 +14,7 @@ on:
         type: boolean
       linux_arm:
         default: false
+        default: false
         type: boolean
       macos:
         default: true
@@ -316,15 +317,15 @@ jobs:
       - name: Build
         run: |
           python setup.py py2exe
-          Move-Item ./dist/yt-dlp.exe ./dist/yt.exe
+          Move-Item ./dist/yt-dlp.exe ./dist/yt-dlp_min.exe
           python pyinst.py
           python pyinst.py --onedir
-          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt-dlp_win.zip
+          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt_win.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          foreach ($name in @("yt-dlp","yt-dlp_min")) {
+          foreach ($name in @("yt","yt_min")) {
             Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
             $version = & "./dist/${name}.exe" --version
             & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
@@ -338,9 +339,10 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            dist/yt-dlp.exe
-            dist/yt-dlp_min.exe
-            dist/yt-dlp_win.zip
+            dist/yt.exe
+            dist/yt_min.exe
+            dist/yt_win.zip
+
 
   windows32:
     if: inputs.windows32
