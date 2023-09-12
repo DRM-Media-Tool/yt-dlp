@@ -75,7 +75,7 @@ offlinetest: codetest
 
 # XXX: This is hard to maintain
 CODE_FOLDERS = yt_dlp yt_dlp/downloader yt_dlp/extractor yt_dlp/postprocessor yt_dlp/compat yt_dlp/compat/urllib yt_dlp/utils yt_dlp/dependencies yt_dlp/networking
-yt: yt_dlp/*.py yt_dlp/*/*.py
+yt-dlp: yt_dlp/*.py yt_dlp/*/*.py
 	mkdir -p zip
 	for d in $(CODE_FOLDERS) ; do \
 	  mkdir -p zip/$$d ;\
@@ -86,9 +86,9 @@ yt: yt_dlp/*.py yt_dlp/*/*.py
 	cd zip ; zip -q ../yt-dlp yt_dlp/*.py yt_dlp/*/*.py __main__.py
 	rm -rf zip
 	echo '#!$(PYTHON)' > yt-dlp
-	cat yt-dlp.zip >> yt
+	cat yt-dlp.zip >> yt-dlp
 	rm yt-dlp.zip
-	chmod a+x yt
+	chmod a+x yt-dlp
 
 README.md: yt_dlp/*.py yt_dlp/*/*.py devscripts/make_readme.py
 	COLUMNS=80 $(PYTHON) yt_dlp/__main__.py --ignore-config --help | $(PYTHON) devscripts/make_readme.py

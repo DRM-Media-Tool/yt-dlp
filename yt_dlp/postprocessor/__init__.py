@@ -23,6 +23,7 @@ from .ffmpeg import (
     FFmpegVideoConvertorPP,
     FFmpegVideoRemuxerPP,
 )
+from .mp4decrypt import MP4DecryptPP
 from .metadataparser import (
     MetadataFromFieldPP,
     MetadataFromTitlePP,

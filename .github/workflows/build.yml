@@ -145,7 +145,7 @@ jobs:
         uses: actions/upload-artifact@v3
         with:
           path: |
-            yt
+            yt-dlp
             yt.tar.gz
             yt_linux
             yt_linux.zip
