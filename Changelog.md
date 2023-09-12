@@ -4,6 +4,14 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.09.12.02
+
+#### Core changes
+- [Delete](https://github.com/yt-dlp/yt-dlp/commit/b5842a197510d77423db115ccfe74354440ff798) by [pukkandan](https://github.com/pukkandan)
+- [Update .gitignore](https://github.com/yt-dlp/yt-dlp/commit/159334065e5c8e442fe63517ae6feec33c10a4d1) by [pukkandan](https://github.com/pukkandan)
+- [Update hook-yt_dlp.py](https://github.com/yt-dlp/yt-dlp/commit/c12e50394c6e6af7efc6a6d82510dfdd5bc3ceb6) by [pukkandan](https://github.com/pukkandan)
+- [new update](https://github.com/yt-dlp/yt-dlp/commit/972e2f13bf29cb9e8072bb04451dd00139f13fbe) by [pukkandan](https://github.com/pukkandan)
+
 ### 2023.09.12.01
 
 #### Core changes
