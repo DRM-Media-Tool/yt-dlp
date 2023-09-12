@@ -29,4 +29,4 @@ def get_hidden_imports():
 hiddenimports = list(get_hidden_imports())
 print(f'Adding imports: {hiddenimports}')
 
-excludedimports = ['youtube_dl', 'youtube_dlc', 'test', 'ytdlp_plugins', 'devscripts']
+excludedimports = ['youtube_dl', 'youtube_dlc', 'test', 'devscripts']
