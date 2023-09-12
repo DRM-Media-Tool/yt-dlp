@@ -250,6 +250,7 @@ class HotStarIE(HotStarBaseIE):
         # change to v2 in the future
         playback_sets = self._call_api_v2('play/v1/playback', video_id, st=st, cookies=cookies)['playBackSets']
         for playback_set in playback_sets:
+            licence_url = playback_set.get('licenceUrl')
             if not isinstance(playback_set, dict):
                 continue
             tags = str_or_none(playback_set.get('tagsCombination')) or ''
@@ -314,6 +315,9 @@ class HotStarIE(HotStarBaseIE):
         self._remove_duplicate_formats(formats)
         for f in formats:
             f.setdefault('http_headers', {}).update(headers)
+        if formats:
+            print("Downloading URL:", formats[0]['url'])
+            print("License URL:", licence_url)
 
         return {
             'id': video_id,
