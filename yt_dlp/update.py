@@ -27,7 +27,7 @@ from .version import CHANNEL, UPDATE_HINT, VARIANT, __version__
 
 UPDATE_SOURCES = {
     'stable': 'Rajeshwaran2001/yt-dlp',
-    'nightly': 'Rajeshwaran2001/yt-dlp-nightly-builds',
+    'nightly': 'yt-dlp/yt-dlp-nightly-builds',
 }
 REPOSITORY = UPDATE_SOURCES['stable']
 
