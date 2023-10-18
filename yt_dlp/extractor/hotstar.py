@@ -336,6 +336,11 @@ class HotStarIE(HotStarBaseIE):
             'season_id': video_data.get('seasonId'),
             'episode': video_data.get('title'),
             'episode_number': int_or_none(video_data.get('episodeNo')),
+            'primaryGenre': video_data.get('primaryGenre'),
+            'genre': video_data.get('genre'),
+            'language': video_data.get('language'),
+            'parentalRating': video_data.get('parentalRatingName'),
+            'contentProvider': video_data.get('contentProvider')
         }
 
 
