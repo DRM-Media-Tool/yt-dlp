@@ -118,6 +118,7 @@
  - **awaan:live**
  - **awaan:season**
  - **awaan:video**
+ - **axs.tv**
  - **AZMedien**: AZ Medien videos
  - **BaiduVideo**: 百度视频
  - **BanBye**
@@ -1332,6 +1333,7 @@
  - **Smotrim**
  - **Snotr**
  - **Sohu**
+ - **SohuV**
  - **SonyLIV**: [*sonyliv*](## "netrc machine")
  - **SonyLIVSeries**
  - **soundcloud**: [*soundcloud*](## "netrc machine")
@@ -1711,7 +1713,6 @@
  - **wdr:mobile**: (**Currently broken**)
  - **WDRElefant**
  - **WDRPage**
- - **web.archive:vlive**: web.archive.org saved vlive videos
  - **web.archive:youtube**: web.archive.org saved youtube videos, "ytarchive:" prefix
  - **Webcamerapl**
  - **Webcaster**
