@@ -326,6 +326,7 @@ class HotStarIE(HotStarBaseIE):
             'duration': int_or_none(video_data.get('duration')),
             'timestamp': int_or_none(traverse_obj(video_data, 'broadcastDate', 'startDate')),
             'release_year': int_or_none(video_data.get('year')),
+            'licence_url': licence_url,
             'formats': formats,
             'subtitles': subs,
             'channel': video_data.get('channelName'),
