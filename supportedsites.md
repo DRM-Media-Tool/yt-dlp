@@ -98,6 +98,8 @@
  - **ArteTVCategory**
  - **ArteTVEmbed**
  - **ArteTVPlaylist**
+ - **AsianCrush**
+ - **AsianCrushPlaylist**
  - **AtresPlayer**: [*atresplayer*](## "netrc machine")
  - **AtScaleConfEvent**
  - **ATTTechChannel**
@@ -162,15 +164,11 @@
  - **BiliBiliBangumi**
  - **BiliBiliBangumiMedia**
  - **BiliBiliBangumiSeason**
- - **BilibiliCollectionList**
- - **BilibiliFavoritesList**
  - **BiliBiliPlayer**
- - **BilibiliPlaylist**
  - **BiliBiliSearch**: Bilibili video search; "bilisearch:" prefix
- - **BilibiliSeriesList**
  - **BilibiliSpaceAudio**
+ - **BilibiliSpacePlaylist**
  - **BilibiliSpaceVideo**
- - **BilibiliWatchlater**
  - **BiliIntl**: [*biliintl*](## "netrc machine")
  - **biliIntl:series**: [*biliintl*](## "netrc machine")
  - **BiliLive**
@@ -205,8 +203,6 @@
  - **BreitBart**
  - **brightcove:legacy**
  - **brightcove:new**
- - **Brilliantpala:Classes**: [*brilliantpala*](## "netrc machine") VoD on classes.brilliantpala.org
- - **Brilliantpala:Elearn**: [*brilliantpala*](## "netrc machine") VoD on elearn.brilliantpala.org
  - **BRMediathek**: Bayerischer Rundfunk Mediathek
  - **bt:article**: Bergens Tidende Articles
  - **bt:vestlendingen**: Bergens Tidende - Vestlendingen
@@ -226,11 +222,9 @@
  - **Camsoda**
  - **CamtasiaEmbed**
  - **CamWithHer**
- - **Canal1**
  - **CanalAlpha**
  - **canalc2.tv**
  - **Canalplus**: mycanal.fr and piwiplus.fr
- - **CaracolTvPlay**: [*caracoltv-play*](## "netrc machine")
  - **CarambaTV**
  - **CarambaTVPage**
  - **CartoonNetwork**
@@ -266,8 +260,6 @@
  - **Cinchcast**
  - **Cinemax**
  - **CinetecaMilano**
- - **Cineverse**
- - **CineverseDetails**
  - **CiscoLiveSearch**
  - **CiscoLiveSession**
  - **ciscowebex**: Cisco Webex
@@ -376,7 +368,7 @@
  - **Dotsub**
  - **Douyin**
  - **DouyuShow**
- - **DouyuTV**: 斗鱼直播
+ - **DouyuTV**: 斗鱼
  - **DPlay**
  - **DRBonanza**
  - **Drooble**
@@ -419,10 +411,8 @@
  - **Engadget**
  - **Epicon**
  - **EpiconSeries**
- - **eplus:inbound**: e+ (イープラス) overseas
  - **Epoch**
  - **Eporner**
- - **Erocast**
  - **EroProfile**: [*eroprofile*](## "netrc machine")
  - **EroProfile:album**
  - **ertflix**: ERTFLIX videos
@@ -657,8 +647,6 @@
  - **Joj**
  - **Jove**
  - **JStream**
- - **JTBC**: jtbc.co.kr
- - **JTBC:program**
  - **JWPlatform**
  - **Kakao**
  - **Kaltura**
@@ -702,7 +690,6 @@
  - **LastFMUser**
  - **lbry**
  - **lbry:channel**
- - **lbry:playlist**
  - **LCI**
  - **Lcp**
  - **LcpPlay**
@@ -768,7 +755,6 @@
  - **massengeschmack.tv**
  - **Masters**
  - **MatchTV**
- - **MBN**: mbn.co.kr (매일방송)
  - **MDR**: MDR.DE and KiKA
  - **MedalTV**
  - **media.ccc.de**
@@ -830,7 +816,6 @@
  - **Mofosex**
  - **MofosexEmbed**
  - **Mojvideo**
- - **Monstercat**
  - **MonsterSirenHypergryphMusic**
  - **Morningstar**: morningstar.com
  - **Motherless**
@@ -964,9 +949,6 @@
  - **niconico:playlist**
  - **niconico:series**
  - **niconico:tag**: NicoNico video tag URLs
- - **NiconicoChannelPlus**: ニコニコチャンネルプラス
- - **NiconicoChannelPlus:​channel:lives**: ニコニコチャンネルプラス - チャンネル - ライブリスト. nicochannel.jp/channel/lives
- - **NiconicoChannelPlus:​channel:videos**: ニコニコチャンネルプラス - チャンネル - 動画リスト. nicochannel.jp/channel/videos
  - **NiconicoUser**
  - **nicovideo:search**: Nico video search; "nicosearch:" prefix
  - **nicovideo:​search:date**: Nico video search, newest first; "nicosearchdate:" prefix
@@ -1086,7 +1068,6 @@
  - **phoenix.de**
  - **Photobucket**
  - **Piapro**: [*piapro*](## "netrc machine")
- - **PIAULIZAPortal**: ulizaportal.jp - PIA LIVE STREAM
  - **Picarto**
  - **PicartoVod**
  - **Piksel**
@@ -1130,7 +1111,6 @@
  - **polskieradio:​podcast:list**
  - **Popcorntimes**
  - **PopcornTV**
- - **Pornbox**
  - **PornCom**
  - **PornerBros**
  - **Pornez**
@@ -1147,6 +1127,7 @@
  - **PornTop**
  - **PornTube**
  - **Pr0gramm**
+ - **Pr0grammStatic**
  - **PrankCast**
  - **PremiershipRugby**
  - **PressTV**
@@ -1181,10 +1162,6 @@
  - **radiocanada**
  - **radiocanada:audiovideo**
  - **radiofrance**
- - **RadioFranceLive**
- - **RadioFrancePodcast**
- - **RadioFranceProfile**
- - **RadioFranceProgramSchedule**
  - **RadioJavan**
  - **radiokapital**
  - **radiokapital:show**
@@ -1206,7 +1183,6 @@
  - **RayWenderlichCourse**
  - **RbgTum**
  - **RbgTumCourse**
- - **RbgTumNewCourse**
  - **RBMARadio**
  - **RCS**
  - **RCSEmbeds**
@@ -1471,7 +1447,6 @@
  - **Tempo**
  - **TennisTV**: [*tennistv*](## "netrc machine")
  - **TenPlay**: [*10play*](## "netrc machine")
- - **TenPlaySeason**
  - **TF1**
  - **TFO**
  - **TheHoleTv**
@@ -1480,6 +1455,8 @@
  - **ThePlatformFeed**
  - **TheStar**
  - **TheSun**
+ - **ThetaStream**
+ - **ThetaVideo**
  - **TheWeatherChannel**
  - **ThisAmericanLife**
  - **ThisAV**
@@ -1743,8 +1720,7 @@
  - **WebOfStories**
  - **WebOfStoriesPlaylist**
  - **Weibo**
- - **WeiboUser**
- - **WeiboVideo**
+ - **WeiboMobile**
  - **WeiqiTV**: WQTV
  - **wetv:episode**
  - **WeTvSeries**

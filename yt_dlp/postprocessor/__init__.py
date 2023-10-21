@@ -34,6 +34,7 @@ from .sponskrub import SponSkrubPP
 from .sponsorblock import SponsorBlockPP
 from .xattrpp import XAttrMetadataPP
 from ..plugins import load_plugins
+from .mp4decrypt import MP4DecryptPP
 
 _PLUGIN_CLASSES = load_plugins('postprocessor', 'PP')
 

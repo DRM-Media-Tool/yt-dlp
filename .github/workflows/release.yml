@@ -42,7 +42,7 @@ jobs:
       - name: Set channel
         id: set_channel
         run: |
-          CHANNEL="${{ github.repository == 'yt-dlp/yt-dlp' && 'stable' || github.repository }}"
+          CHANNEL="${{ github.repository == 'Rajeshwaran2001/yt-dlp' && 'stable' || github.repository }}"
           echo "channel=${{ inputs.channel || '$CHANNEL' }}" > "$GITHUB_OUTPUT"
 
       - name: Update version

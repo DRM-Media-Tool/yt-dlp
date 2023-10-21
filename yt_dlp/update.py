@@ -26,7 +26,7 @@ from .utils import (
 from .version import CHANNEL, UPDATE_HINT, VARIANT, __version__
 
 UPDATE_SOURCES = {
-    'stable': 'yt-dlp/yt-dlp',
+    'stable': 'Rajeshwaran2001/yt-dlp',
     'nightly': 'yt-dlp/yt-dlp-nightly-builds',
 }
 REPOSITORY = UPDATE_SOURCES['stable']
@@ -100,8 +100,8 @@ _NON_UPDATEABLE_REASONS = {
     **{variant: f'Auto-update is not supported for unpackaged {name} executable; Re-download the latest release'
        for variant, name in {'win32_dir': 'Windows', 'darwin_dir': 'MacOS', 'linux_dir': 'Linux'}.items()},
     'source': 'You cannot update when running from source code; Use git to pull the latest changes',
-    'unknown': 'You installed yt-dlp with a package manager or setup.py; Use that to update',
-    'other': 'You are using an unofficial build of yt-dlp; Build the executable again',
+    'unknown': 'You installed yt with a package manager or setup.py; Use that to update',
+    'other': 'You are using an unofficial build of yt; Build the executable again',
 }
 
 
@@ -206,7 +206,7 @@ class Updater:
                 elif self.target_tag == 'latest' or not self._version_compare(
                         tag, self.target_tag[5:], channel=self.target_channel):
                     self._report_error(
-                        f'yt-dlp cannot be updated above {tag} since you are on an older Python version', True)
+                        f'yt cannot be updated above {tag} since you are on an older Python version', True)
                     return f'tags/{self.current_version}'
         return self.target_tag
 
@@ -216,7 +216,7 @@ class Updater:
         self.ydl.write_debug(f'Fetching release info: {url}')
         return json.loads(self.ydl.urlopen(Request(url, headers={
             'Accept': 'application/vnd.github+json',
-            'User-Agent': 'yt-dlp',
+            'User-Agent': 'yt',
             'X-GitHub-Api-Version': '2022-11-28',
         })).read().decode())
 
@@ -264,7 +264,7 @@ class Updater:
     @functools.cached_property
     def release_name(self):
         """The release filename"""
-        return f'yt-dlp{_FILE_SUFFIXES[detect_variant()]}'
+        return f'yt{_FILE_SUFFIXES[detect_variant()]}'
 
     @functools.cached_property
     def release_hash(self):
@@ -302,9 +302,9 @@ class Updater:
             return True
 
         if self.target_tag == self._tag:
-            self.ydl.to_screen(f'yt-dlp is up to date ({self._label(CHANNEL, self.current_version)})')
+            self.ydl.to_screen(f'yt is up to date ({self._label(CHANNEL, self.current_version)})')
         elif not self._exact:
-            self.ydl.report_warning('yt-dlp cannot be updated any further since you are on an older Python version')
+            self.ydl.report_warning('yt cannot be updated any further since you are on an older Python version')
         return False
 
     def update(self):
@@ -387,7 +387,7 @@ class Updater:
                 return self._report_error(
                     f'Unable to set permissions. Run: sudo chmod a+rx {compat_shlex_quote(self.filename)}')
 
-        self.ydl.to_screen(f'Updated yt-dlp to {self._label(self.target_channel, self.new_version)}')
+        self.ydl.to_screen(f'Updated yt to {self._label(self.target_channel, self.new_version)}')
         return True
 
     @functools.cached_property
@@ -408,7 +408,7 @@ class Updater:
 
     def _block_restart(self, msg):
         def wrapper():
-            self._report_error(f'{msg}. Restart yt-dlp to use the updated version', expected=True)
+            self._report_error(f'{msg}. Restart yt to use the updated version', expected=True)
             return self.ydl._download_retcode
         self.restart = wrapper
 
