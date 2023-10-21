@@ -4,6 +4,14 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.10.21
+
+#### Core changes
+- [Merge branch 'release' into oct](https://github.com/Rajeshwaran2001/yt-dlp/commit/059a40e850c4fbd9a2f59372141599687fdb7ce1) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge branch 'yt-dlp:master' into master](https://github.com/Rajeshwaran2001/yt-dlp/commit/92298c731f0fd4f86d023781d61e676441882171) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #3 from Rajeshwaran2001/oct](https://github.com/Rajeshwaran2001/yt-dlp/commit/25d5c60d498592b97a4fda1ca86ecee83ca7e2f2) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update hotstar.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/5f3830eb3a425055149f5a18c6cfcf554325fbd4) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.10.19
 
 #### Core changes
