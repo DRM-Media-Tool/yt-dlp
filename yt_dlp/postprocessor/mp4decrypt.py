@@ -90,31 +90,34 @@ class MP4DecryptPP(PostProcessor):
             }
             r = requests.post(api_url, headers=headers, json=payload)
             output_file = f"{os.path.splitext(filepath)[0]}_decrypted{os.path.splitext(filepath)[1]}"
-            print(r.text)
+            # print(r.text)
             if r is not None:
                 data = json.loads(r.text)
-                # print(data)
+                print(data)
                 cmd = ["mp4decrypt"]
-                key_data = data.get("keys")
+                key_value = data.get("keys")
+                # key_value = key_data[0]['key']
                 # key_d = key_data.get('key')
-                # print('test', key_data)
-                if key_data is not None:
-                    key_value = key_data[0]['key']
-                    cmd.extend(["--key", key_value])
+                if key_value is not None:
+                    if isinstance(key_value, str):
+                        print('test', key_value)
+                        cmd.extend(["--key", key_value])
+                    elif isinstance(key_value, list):
+                        data = data.get("keys")
+                        # print(data)
+                        for key in data:
+                            print('test2', key)
+                            cmd.extend(["--key", key])
+                        cmd.extend([filepath, output_file])
+                        # USE FOR DEBUGGING PURPOSES
+                        # self.to_screen(f'Executing command: {" ".join(cmd)}')
+                        subprocess.run(cmd, check=True)
+                        os.remove(filepath)
+                        os.rename(output_file, filepath)
+                        print(cmd)
+                        return True
                 else:
-                    data = data.get("keys")
-                    # print(data)
-                    for key in data:
-                        # print('test2', key)
-                        cmd.extend(["--key", key])
-                    cmd.extend([filepath, output_file])
-                    # USE FOR DEBUGGING PURPOSES
-                    # self.to_screen(f'Executing command: {" ".join(cmd)}')
-                    subprocess.run(cmd, check=True)
-                    os.remove(filepath)
-                    os.rename(output_file, filepath)
-                    return True
-                # print(cmd)
+                    print("ERROR.")
             else:
                 print("No 'keys' found in the response.")
         except subprocess.CalledProcessError:
