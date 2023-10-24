@@ -1,6 +1,8 @@
 from yt_dlp.postprocessor.common import PostProcessor
 import os
 import subprocess
+import requests
+from bs4 import BeautifulSoup
 
 
 class MP4DecryptPP(PostProcessor):
@@ -10,15 +12,42 @@ class MP4DecryptPP(PostProcessor):
 
     def run(self, info):
         filepath = info.get('filepath')
+        license_url = info.get('licence_url')
+        formats = info.get('formats')
+        manifest_url = None
+        for format_obj in formats:
+            url = format_obj.get('manifest_url', '')
+            if ".mpd" in url:
+                manifest_url = url
+                break
+        if manifest_url:
+            # print('manifest_url', manifest_url)
+            cookies = formats[0].get('http_headers')
+            if cookies:
+                session = requests.Session()
+                response = session.get(manifest_url, headers=cookies)
+                # print(response.text)
+                soup = BeautifulSoup(response.text, 'xml')
+                cenc_pssh_tag = soup.find('cenc:pssh')
+                if cenc_pssh_tag:
+                    cenc_pssh_value = cenc_pssh_tag.get_text()
+                    # print("pssh", cenc_pssh_value)
+                else:
+                    print("No <cenc:pssh> tag found in the response.")
+            else:
+                print("No cookies found in the format object.")
+        else:
+            print("No manifest URL containing '.mpd' found.")
 
         if filepath:
-            if 'decryption_key' in self._kwargs:
-                decryption_key = self._kwargs['decryption_key']
-                success = self.decrypt_single_key(filepath, decryption_key)
+            if 'decrypt' in self._kwargs:
+                # decryption_key = self._kwargs['decrypt']
+                # print(decryption_key)
+                success = self.keydb(filepath, cenc_pssh_value, license_url)
                 if success:
-                    self.to_screen(f'Decryption successful for "{filepath}" using decryption_key: {decryption_key}')
+                    self.to_screen(f'Decryption successful for "{filepath}" using PSSH: {cenc_pssh_value}')
                 else:
-                    self.to_screen(f'Decryption failed for "{filepath}" using decryption_key: {decryption_key}')
+                    self.to_screen(f'Decryption successful for "{filepath}" using PSSH: {cenc_pssh_value}')
             elif 'keyfile' in self._kwargs:
                 keyfile = self._kwargs['keyfile']
                 if os.path.exists(keyfile):
@@ -39,10 +68,12 @@ class MP4DecryptPP(PostProcessor):
 
         return [], info
 
-    def decrypt_single_key(self, filepath, decryption_key):
+    def keydb(self, filepath, cenc_pssh_value, license_url):
         try:
+            print("pssh", cenc_pssh_value)
+            print("licence_url", license_url)
             output_file = f"{os.path.splitext(filepath)[0]}_decrypted{os.path.splitext(filepath)[1]}"
-            cmd = ["mp4decrypt", "--key", decryption_key, filepath, output_file]
+            # cmd = ["mp4decrypt", "--key", decryption_key, filepath, output_file]
             # USE FOR DEBUGGING PURPOSES
             # self.to_screen(f'Executing command: {" ".join(cmd)}')
             subprocess.run(cmd, check=True)
