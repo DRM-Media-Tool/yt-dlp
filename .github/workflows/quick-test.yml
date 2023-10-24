@@ -15,7 +15,7 @@ jobs:
       with:
         python-version: '3.11'
     - name: Install test requirements
-      run: pip install pytest pycryptodomex requests
+      run: pip install pytest pycryptodomex requests beautifulsoup4
     - name: Run tests
       run: |
         python3 -m yt_dlp -v || true
