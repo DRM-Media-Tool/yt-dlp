@@ -4,6 +4,19 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.10.24
+
+#### Core changes
+- [Update mp4decrypt.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/6f457f8d21be549a85322b28dce770bde237bfda) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update quick-test.yml](https://github.com/Rajeshwaran2001/yt-dlp/commit/38eca22cec4724f07895349ec1cae33db1cb348b) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update quick-test.yml](https://github.com/Rajeshwaran2001/yt-dlp/commit/c5202bfa5832544e813e3de66da806abe299f198) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update release.yml](https://github.com/Rajeshwaran2001/yt-dlp/commit/8a1d706b67c857e395eecee2f32980e13a9f643d) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update release.yml](https://github.com/Rajeshwaran2001/yt-dlp/commit/e7c38f5b46ef1918b21c0b4c95c7f5cddd481a22) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [auto key grabber and decrypted](https://github.com/Rajeshwaran2001/yt-dlp/commit/68feeb9574056f561ebcf9548ea180eba6bdf7df) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [fix](https://github.com/Rajeshwaran2001/yt-dlp/commit/4b829ae1839cad41d7da58a9085ae7335ed0472a) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [fix](https://github.com/Rajeshwaran2001/yt-dlp/commit/2e14cee5ca1ea2b8759794294ace7922ffabb641) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [initial commit to get pssh and license url](https://github.com/Rajeshwaran2001/yt-dlp/commit/3caa35bb83ee2fbeeb5291366a8645f90610cd0d) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.10.21
 
 #### Core changes
