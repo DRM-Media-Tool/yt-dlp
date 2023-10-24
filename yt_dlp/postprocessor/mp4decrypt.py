@@ -3,6 +3,7 @@ import os
 import subprocess
 import requests
 from bs4 import BeautifulSoup
+import json
 
 
 class MP4DecryptPP(PostProcessor):
@@ -45,9 +46,9 @@ class MP4DecryptPP(PostProcessor):
                 # print(decryption_key)
                 success = self.keydb(filepath, cenc_pssh_value, license_url)
                 if success:
-                    self.to_screen(f'Decryption successful for "{filepath}" using PSSH: {cenc_pssh_value}')
+                    self.to_screen(f'Decryption successful for "{filepath}"')
                 else:
-                    self.to_screen(f'Decryption successful for "{filepath}" using PSSH: {cenc_pssh_value}')
+                    self.to_screen(f'Decryption successful for "{filepath}"')
             elif 'keyfile' in self._kwargs:
                 keyfile = self._kwargs['keyfile']
                 if os.path.exists(keyfile):
@@ -69,17 +70,54 @@ class MP4DecryptPP(PostProcessor):
         return [], info
 
     def keydb(self, filepath, cenc_pssh_value, license_url):
+        api_key = os.environ.get("APIKEY")
         try:
-            print("pssh", cenc_pssh_value)
-            print("licence_url", license_url)
+            print()
+            print("pssh:", cenc_pssh_value)
+            print()
+            print("licence_url:", license_url)
+            print()
+            api_url = "https://keysdb.net/api"
+            url = license_url
+            pssh = cenc_pssh_value
+            headers = {
+                "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (Ktesttemp, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
+                "Content-Type": "application/json",
+                "X-API-Key": api_key,
+            }
+            payload = {
+                "license_url": url,
+                "pssh": pssh,
+            }
+            r = requests.post(api_url, headers=headers, json=payload)
             output_file = f"{os.path.splitext(filepath)[0]}_decrypted{os.path.splitext(filepath)[1]}"
-            # cmd = ["mp4decrypt", "--key", decryption_key, filepath, output_file]
-            # USE FOR DEBUGGING PURPOSES
-            # self.to_screen(f'Executing command: {" ".join(cmd)}')
-            subprocess.run(cmd, check=True)
-            os.remove(filepath)
-            os.rename(output_file, filepath)
-            return True
+            print(r.text)
+            if r is not None:
+                data = json.loads(r.text)
+                # print(data)
+                cmd = ["mp4decrypt"]
+                key_data = data.get("keys")
+                # key_d = key_data.get('key')
+                # print('test', key_data)
+                if key_data is not None:
+                    key_value = key_data[0]['key']
+                    cmd.extend(["--key", key_value])
+                else:
+                    data = data.get("keys")
+                    # print(data)
+                    for key in data:
+                        # print('test2', key)
+                        cmd.extend(["--key", key])
+                    cmd.extend([filepath, output_file])
+                    # USE FOR DEBUGGING PURPOSES
+                    # self.to_screen(f'Executing command: {" ".join(cmd)}')
+                    subprocess.run(cmd, check=True)
+                    os.remove(filepath)
+                    os.rename(output_file, filepath)
+                    return True
+                # print(cmd)
+            else:
+                print("No 'keys' found in the response.")
         except subprocess.CalledProcessError:
             return False
 
