@@ -70,7 +70,6 @@ class MP4DecryptPP(PostProcessor):
         return [], info
 
     def keydb(self, filepath, cenc_pssh_value, license_url):
-        api_key = os.environ.get("API_KEY")
         try:
             print()
             print("pssh:", cenc_pssh_value)
@@ -83,7 +82,7 @@ class MP4DecryptPP(PostProcessor):
             headers = {
                 "user-agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (Ktesttemp, like Gecko) Chrome/90.0.4430.85 Safari/537.36",
                 "Content-Type": "application/json",
-                "X-API-Key": api_key,
+                "X-API-Key": 'api_key',
             }
             payload = {
                 "license_url": url,

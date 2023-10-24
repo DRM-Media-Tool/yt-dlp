@@ -95,8 +95,6 @@ jobs:
           activate-environment: ""
           auto-activate-base: false
       - name: Install Requirements
-        env:
-          API_KEY: ${{ secrets.APIKEY }}
         run: |
           sudo apt-get -y install zip pandoc man sed
           python -m pip install -U pip setuptools wheel
@@ -170,8 +168,6 @@ jobs:
           path: ./repo
       - name: Virtualized Install, Prepare & Build
         uses: yt-dlp/run-on-arch-action@v2
-        env:
-          API_KEY: ${{ secrets.APIKEY }}
         with:
           # Ref: https://github.com/uraimo/run-on-arch-action/issues/55
           env: |
@@ -225,8 +221,6 @@ jobs:
           python3 -m pip install -U --user --no-binary :all: Pyinstaller -r requirements.txt
 
       - name: Prepare
-        env:
-          API_KEY: ${{ secrets.APIKEY }}
         run: |
           python3 devscripts/update-version.py -c ${{ inputs.channel }} ${{ inputs.version }}
           python3 devscripts/make_lazy_extractors.py
@@ -279,8 +273,6 @@ jobs:
           python3 -m pip install -U --user Pyinstaller -r requirements.txt
 
       - name: Prepare
-        env:
-          API_KEY: ${{ secrets.APIKEY }}
         run: |
           python3 devscripts/update-version.py -c ${{ inputs.channel }} ${{ inputs.version }}
           python3 devscripts/make_lazy_extractors.py
@@ -320,8 +312,6 @@ jobs:
           pip install -U "https://yt-dlp.github.io/Pyinstaller-Builds/x86_64/pyinstaller-5.8.0-py3-none-any.whl" -r requirements.txt
 
       - name: Prepare
-        env:
-          API_KEY: ${{ secrets.APIKEY }}
         run: |
           python devscripts/update-version.py -c ${{ inputs.channel }} ${{ inputs.version }}
           python devscripts/make_lazy_extractors.py
@@ -372,8 +362,6 @@ jobs:
           pip install -U "https://yt-dlp.github.io/Pyinstaller-Builds/i686/pyinstaller-5.8.0-py3-none-any.whl" -r requirements.txt
 
       - name: Prepare
-        env:
-          API_KEY: ${{ secrets.APIKEY }}
         run: |
           python devscripts/update-version.py -c ${{ inputs.channel }} ${{ inputs.version }}
           python devscripts/make_lazy_extractors.py
