@@ -55,7 +55,7 @@ jobs:
 
       - name: Update documentation
         run: |
-          pip install requests
+          pip install requests beautifulsoup4
           make doc
           sed '/### /Q' Changelog.md >> ./CHANGELOG
           echo '### ${{ steps.update_version.outputs.version }}' >> ./CHANGELOG
