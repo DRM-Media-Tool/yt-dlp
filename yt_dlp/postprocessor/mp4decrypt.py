@@ -70,7 +70,7 @@ class MP4DecryptPP(PostProcessor):
         return [], info
 
     def keydb(self, filepath, cenc_pssh_value, license_url):
-        api_key = os.environ.get("APIKEY")
+        api_key = os.environ.get("API_KEY")
         try:
             print()
             print("pssh:", cenc_pssh_value)
