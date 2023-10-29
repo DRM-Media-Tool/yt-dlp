@@ -91,21 +91,20 @@ class MP4DecryptPP(PostProcessor):
             r = requests.post(api_url, headers=headers, json=payload)
             output_file = f"{os.path.splitext(filepath)[0]}_decrypted{os.path.splitext(filepath)[1]}"
             # print(r.text)
-            if r is not None:
-                data = json.loads(r.text)
-                print(data)
-                cmd = ["mp4decrypt"]
-                key_value = data.get("keys")
-                # key_value = key_data[0]['key']
-                # key_d = key_data.get('key')
-                if key_value is not None:
-                    if isinstance(key_value, str):
-                        print('test', key_value)
-                        cmd.extend(["--key", key_value])
-                    elif isinstance(key_value, list):
+            data = json.loads(r.text)
+            cmd = ["mp4decrypt"]
+            if "keys" in data:
+                keys = data["keys"]
+                if isinstance(keys, list):
+                    if len(keys) == 1:
+                        key = keys[0]["key"]
+                        cmd.extend(["--key", key])
+                        # print(data)
+                    else:
                         data = data.get("keys")
                         # print(data)
                         for key in data:
+                            print(key)
                             print('test2', key)
                             cmd.extend(["--key", key])
                         cmd.extend([filepath, output_file])
