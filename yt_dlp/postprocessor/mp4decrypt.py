@@ -12,15 +12,15 @@ class MP4DecryptPP(PostProcessor):
         filepath = info.get('filepath')
 
         if filepath:
-            if 'decryption_key' in self._kwargs:
-                decryption_key = self._kwargs['decryption_key']
+            if 'k' in self._kwargs:
+                decryption_key = self._kwargs['k']
                 success = self.decrypt_single_key(filepath, decryption_key)
                 if success:
                     self.to_screen(f'Decryption successful for "{filepath}" using decryption_key: {decryption_key}')
                 else:
                     self.to_screen(f'Decryption failed for "{filepath}" using decryption_key: {decryption_key}')
-            elif 'keyfile' in self._kwargs:
-                keyfile = self._kwargs['keyfile']
+            elif 'f' in self._kwargs:
+                keyfile = self._kwargs['f']
                 if os.path.exists(keyfile):
                     success = self.decrypt_with_keyfile(filepath, keyfile)
                     if success:
