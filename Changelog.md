@@ -4,6 +4,15 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.11.02
+
+#### Core changes
+- [Update mp4decrypt.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/8b831fea2d01398c61fc42442e3e4fe49558cedb) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update mp4decrypt.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/e369701c502e69f90143e3bcaa16ffbf1d4b60a3) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update mp4decrypt.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/61cd284abe8df6e33d564291506f54a04078c2c0) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/38d210faaf98ad5b59c81852c17ba7a8a1bc8ff7) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [mp4decrypt restored](https://github.com/Rajeshwaran2001/yt-dlp/commit/ae70b9f3cdd20b7cf2c95124581fa0a1ca8d6038) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.10.24
 
 #### Core changes
