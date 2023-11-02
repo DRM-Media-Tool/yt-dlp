@@ -4,6 +4,17 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.11.03
+
+#### Core changes
+- [Merge branch 'yt-dlp:master' into master](https://github.com/Rajeshwaran2001/yt-dlp/commit/306d27b7c3991d15c319e28df3ccc4ef34890f4d) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #4 from Rajeshwaran2001/master](https://github.com/Rajeshwaran2001/yt-dlp/commit/23980ebdc75d0846bc9b6bad6ba6c7ce1af082d8) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/6733f0d4ac35ff4a435aa78f27829acb7c9d05d7) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/2eec16cce8134d25cc3537246e1fde4dd7134deb) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/fa0c1bccb652a99292bb258f240b53b775347bcd) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/1d1557d351cc7a70b62b339fdd691d6ac6fe2b68) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/fc1e6aceefbf5e466c7957dc6b18bf97a057c94f) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.11.02
 
 #### Core changes
