@@ -868,7 +868,7 @@ def create_parser():
         help='Do not write auto-generated subtitles (default) (Alias: --no-write-automatic-subs)')
     subtitles.add_option(
         '--all-subs',
-        action='store_true', dest='allsubtitles', default=True,
+        action='store_true', dest='allsubtitles', default=False,
         help=optparse.SUPPRESS_HELP)
     subtitles.add_option(
         '--list-subs',
@@ -1238,7 +1238,7 @@ def create_parser():
             '--console-title --progress-template "download-title:%(info.id)s-%(progress.eta)s"'))
     verbosity.add_option(
         '-v', '--verbose',
-        action='store_true', dest='verbose', default=True,
+        action='store_true', dest='verbose', default=False,
         help='Print various debugging information')
     verbosity.add_option(
         '--dump-pages', '--dump-intermediate-pages',
@@ -1388,7 +1388,7 @@ def create_parser():
         help='Do not write video description (default)')
     filesystem.add_option(
         '--write-info-json',
-        action='store_true', dest='writeinfojson', default=True,
+        action='store_true', dest='writeinfojson', default=None,
         help='Write video metadata to a .info.json file (this may contain personal information)')
     filesystem.add_option(
         '--no-write-info-json',
@@ -1475,7 +1475,7 @@ def create_parser():
     thumbnail = optparse.OptionGroup(parser, 'Thumbnail Options')
     thumbnail.add_option(
         '--write-thumbnail',
-        action='callback', dest='writethumbnail', default=True,
+        action='callback', dest='writethumbnail', default=False,
         # Should override --no-write-thumbnail, but not --write-all-thumbnail
         callback=lambda option, _, __, parser: setattr(
             parser.values, option.dest, getattr(parser.values, option.dest) or True),
@@ -1581,7 +1581,7 @@ def create_parser():
         help='Do not overwrite post-processed files')
     postproc.add_option(
         '--embed-subs',
-        action='store_true', dest='embedsubtitles', default=True,
+        action='store_true', dest='embedsubtitles', default=False,
         help='Embed subtitles in the video (only for mp4, webm and mkv videos)')
     postproc.add_option(
         '--no-embed-subs',
@@ -1607,7 +1607,7 @@ def create_parser():
         help='Do not add metadata to file (default) (Alias: --no-add-metadata)')
     postproc.add_option(
         '--embed-chapters', '--add-chapters',
-        action='store_true', dest='addchapters', default=True,
+        action='store_true', dest='addchapters', default=None,
         help='Add chapter markers to the video file (Alias: --add-chapters)')
     postproc.add_option(
         '--no-embed-chapters', '--no-add-chapters',
