@@ -868,7 +868,7 @@ def create_parser():
         help='Do not write auto-generated subtitles (default) (Alias: --no-write-automatic-subs)')
     subtitles.add_option(
         '--all-subs',
-        action='store_true', dest='allsubtitles', default=True,
+        action='store_true', dest='allsubtitles', default=False,
         help=optparse.SUPPRESS_HELP)
     subtitles.add_option(
         '--list-subs',
@@ -1581,7 +1581,7 @@ def create_parser():
         help='Do not overwrite post-processed files')
     postproc.add_option(
         '--embed-subs',
-        action='store_true', dest='embedsubtitles', default=True,
+        action='store_true', dest='embedsubtitles', default=False,
         help='Embed subtitles in the video (only for mp4, webm and mkv videos)')
     postproc.add_option(
         '--no-embed-subs',
