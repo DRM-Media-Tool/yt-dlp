@@ -9,3 +9,7 @@ VARIANT = None
 UPDATE_HINT = None
 
 CHANNEL = 'stable'
+
+ORIGIN = 'Rajeshwaran2001/yt-dlp'
+
+_pkg_version = '2023.11.03'
