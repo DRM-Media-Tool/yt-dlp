@@ -36,9 +36,8 @@ from .version import (
 )
 
 UPDATE_SOURCES = {
-    'stable': 'yt-dlp/yt-dlp',
+    'stable': 'Rajeshwaran2001/yt-dlp',
     'nightly': 'yt-dlp/yt-dlp-nightly-builds',
-    'master': 'yt-dlp/yt-dlp-master-builds',
 }
 REPOSITORY = UPDATE_SOURCES['stable']
 _INVERSE_UPDATE_SOURCES = {value: key for key, value in UPDATE_SOURCES.items()}
@@ -114,8 +113,8 @@ _NON_UPDATEABLE_REASONS = {
     **{variant: f'Auto-update is not supported for unpackaged {name} executable; Re-download the latest release'
        for variant, name in {'win32_dir': 'Windows', 'darwin_dir': 'MacOS', 'linux_dir': 'Linux'}.items()},
     'source': 'You cannot update when running from source code; Use git to pull the latest changes',
-    'unknown': 'You installed yt-dlp with a package manager or setup.py; Use that to update',
-    'other': 'You are using an unofficial build of yt-dlp; Build the executable again',
+    'unknown': 'You installed yt with a package manager or setup.py; Use that to update',
+    'other': 'You are using an unofficial build of yt; Build the executable again',
 }
 
 
@@ -250,27 +249,33 @@ class Updater:
         """Current version"""
         return __version__
 
-    @property
-    def current_commit(self):
-        """Current commit hash"""
-        return RELEASE_GIT_HEAD
+    @functools.cached_property
+    def _tag(self):
+        if self._version_compare(self.current_version, self.latest_version):
+            return self.target_tag
 
-    def _download_asset(self, name, tag=None):
-        if not tag:
-            tag = self.requested_tag
+        identifier = f'{detect_variant()} {self.target_channel} {system_identifier()}'
+        for line in self._download('_update_spec', 'latest').decode().splitlines():
+            if not line.startswith('lock '):
+                continue
+            _, tag, pattern = line.split(' ', 2)
+            if re.match(pattern, identifier):
+                if not self._exact:
+                    return f'tags/{tag}'
+                elif self.target_tag == 'latest' or not self._version_compare(
+                        tag, self.target_tag[5:], channel=self.target_channel):
+                    self._report_error(
+                        f'yt cannot be updated above {tag} since you are on an older Python version', True)
+                    return f'tags/{self.current_version}'
+        return self.target_tag
 
-        path = 'latest/download' if tag == 'latest' else f'download/{tag}'
-        url = f'https://github.com/{self.requested_repo}/releases/{path}/{name}'
-        self.ydl.write_debug(f'Downloading {name} from {url}')
-        return self.ydl.urlopen(url).read()
-
-    def _call_api(self, tag):
-        tag = f'tags/{tag}' if tag != 'latest' else tag
-        url = f'{API_BASE_URL}/{self.requested_repo}/releases/{tag}'
+    @cached_method
+    def _get_version_info(self, tag):
+        url = f'{API_BASE_URL}/{self._target_repo}/releases/{tag}'
         self.ydl.write_debug(f'Fetching release info: {url}')
         return json.loads(self.ydl.urlopen(Request(url, headers={
             'Accept': 'application/vnd.github+json',
-            'User-Agent': 'yt-dlp',
+            'User-Agent': 'yt',
             'X-GitHub-Api-Version': '2022-11-28',
         })).read().decode())
 
@@ -310,9 +315,10 @@ class Updater:
             f'The requested tag {self.requested_tag} does not exist for {self.requested_repo}', True)
         return None
 
-    def _process_update_spec(self, lockfile: str, resolved_tag: str):
-        lines = lockfile.splitlines()
-        is_version2 = any(line.startswith('lockV2 ') for line in lines)
+    @functools.cached_property
+    def release_name(self):
+        """The release filename"""
+        return f'yt{_FILE_SUFFIXES[detect_variant()]}'
 
         for line in lines:
             if is_version2:
@@ -399,35 +405,18 @@ class Updater:
         checksum = None
         # Non-updateable variants can get update_info but need to skip checksum
         if not is_non_updateable():
-            try:
-                hashes = self._download_asset('SHA2-256SUMS', result_tag)
-            except network_exceptions as error:
-                if not isinstance(error, HTTPError) or error.status != 404:
-                    self._report_network_error(f'fetch checksums: {error}')
-                    return None
-                self.ydl.report_warning('No hash information found for the release, skipping verification')
-            else:
-                for ln in hashes.decode().splitlines():
-                    if ln.endswith(_get_binary_name()):
-                        checksum = ln.split()[0]
-                        break
-                if not checksum:
-                    self.ydl.report_warning('The hash could not be found in the checksum file, skipping verification')
+            self.ydl.to_screen(f'Current Build Hash: {_sha256_file(self.filename)}')
 
-        if _output:
-            update_label = _make_label(self.requested_repo, result_tag, result_version)
-            self.ydl.to_screen(
-                f'Current version: {current_label}\n{latest_or_requested}'
-                + (f'\nUpgradable to: {update_label}' if update_label != requested_label else ''))
+        if self.has_update:
+            return True
 
-        return UpdateInfo(
-            tag=result_tag,
-            version=result_version,
-            requested_version=requested_version,
-            commit=target_commitish if result_tag == resolved_tag else None,
-            checksum=checksum)
+        if self.target_tag == self._tag:
+            self.ydl.to_screen(f'yt is up to date ({self._label(CHANNEL, self.current_version)})')
+        elif not self._exact:
+            self.ydl.report_warning('yt cannot be updated any further since you are on an older Python version')
+        return False
 
-    def update(self, update_info=NO_DEFAULT):
+    def update(self):
         """Update yt-dlp executable to the latest version"""
         if update_info is NO_DEFAULT:
             update_info = self.query_update(_output=True)
@@ -508,7 +497,7 @@ class Updater:
                 return self._report_error(
                     f'Unable to set permissions. Run: sudo chmod a+rx {compat_shlex_quote(self.filename)}')
 
-        self.ydl.to_screen(f'Updated yt-dlp to {update_label}')
+        self.ydl.to_screen(f'Updated yt to {self._label(self.target_channel, self.new_version)}')
         return True
 
     @functools.cached_property
@@ -534,7 +523,7 @@ class Updater:
 
     def _block_restart(self, msg):
         def wrapper():
-            self._report_error(f'{msg}. Restart yt-dlp to use the updated version', expected=True)
+            self._report_error(f'{msg}. Restart yt to use the updated version', expected=True)
             return self.ydl._download_retcode
         self.restart = wrapper
 

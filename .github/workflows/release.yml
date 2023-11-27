@@ -8,15 +8,15 @@ on:
         type: boolean
       source:
         required: false
-        default: ''
+        default: ""
         type: string
       target:
         required: false
-        default: ''
+        default: ""
         type: string
       version:
         required: false
-        default: ''
+        default: ""
         type: string
   workflow_dispatch:
     inputs:
@@ -26,7 +26,7 @@ on:
           channel, repo, tag, or channel/repo@tag
           (default: <current_repo>)
         required: false
-        default: ''
+        default: ""
         type: string
       target:
         description: |
@@ -34,14 +34,14 @@ on:
           channel, tag, or channel@tag
           (default: <source> if writable else <current_repo>[@source_tag])
         required: false
-        default: ''
+        default: ""
         type: string
       version:
         description: |
           VERSION: yyyy.mm.dd[.rev] or rev
           (default: auto-generated)
         required: false
-        default: ''
+        default: ""
         type: string
       prerelease:
         description: Pre-release
@@ -253,7 +253,7 @@ jobs:
     if: ${{ needs.prepare.outputs.pypi_project }}
     runs-on: ubuntu-latest
     permissions:
-      id-token: write  # mandatory for trusted publishing
+      id-token: write # mandatory for trusted publishing
 
     steps:
       - uses: actions/checkout@v4
