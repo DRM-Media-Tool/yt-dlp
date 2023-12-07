@@ -12,7 +12,7 @@ from test.helper import FakeYDL, report_warning
 from yt_dlp.update import Updater, UpdateInfo
 
 TEST_API_DATA = {
-    'yt-dlp/yt-dlp/latest': {
+    'Rajeshwaran2001/yt-dlp/latest': {
         'tag_name': '2023.12.31',
         'target_commitish': 'bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb',
         'name': 'yt-dlp 2023.12.31',
