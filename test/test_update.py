@@ -42,6 +42,12 @@ TEST_API_DATA = {
         'name': 'testing',
         'body': 'BODY',
     },
+    'Rajeshwaran2001/yt-dlp/tags/testing': {
+        'tag_name': 'testing',
+        'target_commitish': '9999999999999999999999999999999999999999',
+        'name': 'testing',
+        'body': 'BODY',
+    },
     'fork/yt-dlp/latest': {
         'tag_name': '2050.12.31',
         'target_commitish': 'eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee',
