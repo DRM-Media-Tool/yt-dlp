@@ -224,7 +224,7 @@ class TestUpdate(unittest.TestCase):
         test('master', UpdateInfo(
             '2023.12.31.987654', version='2023.12.31.987654', requested_version='2023.12.31.987654', commit='d' * 40))
         test('testing', None, current_commit='9' * 40)
-        test('testing', UpdateInfo('testing', commit='9' * 40))
+        test('testing', UpdateInfo('testing', None, commit='9' * 40))
 
 
 if __name__ == '__main__':
