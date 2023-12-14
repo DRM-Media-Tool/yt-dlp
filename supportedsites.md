@@ -397,7 +397,7 @@
  - **EMPFlix**
  - **Epicon**
  - **EpiconSeries**
- - **eplus:inbound**: e+ (イープラス) overseas
+ - **eplus**: [*eplus*](## "netrc machine") e+ (イープラス)
  - **Epoch**
  - **Eporner**
  - **Erocast**

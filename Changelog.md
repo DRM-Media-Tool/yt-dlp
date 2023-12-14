@@ -4,6 +4,22 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.12.14.180430
+
+#### Core changes
+- [Merge pull request #6 from Rajeshwaran2001/master](https://github.com/Rajeshwaran2001/yt-dlp/commit/ee9ce0a3deafdffb52f9a5915566115091b71581) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update options.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/2eb04dc24e6a3927471bc22d1059ae13d13bcec8) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
+#### Extractor changes
+- [Add `media_type` field](https://github.com/Rajeshwaran2001/yt-dlp/commit/e370f9ec36972d06100a3db893b397bfc1b07b4d) by [trainman261](https://github.com/trainman261)
+- **bitchute**: [Fix and improve metadata extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/b1a1ec1540605d2ea7abdb63336ffb1c56bf6316) ([#8507](https://github.com/Rajeshwaran2001/yt-dlp/issues/8507)) by [SirElderling](https://github.com/SirElderling)
+- **eplus**: [Add login support and DRM detection](https://github.com/Rajeshwaran2001/yt-dlp/commit/d5d1517e7d838500800d193ac3234b06e89654cd) ([#8661](https://github.com/Rajeshwaran2001/yt-dlp/issues/8661)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **theplatform**: [Extract more metadata](https://github.com/Rajeshwaran2001/yt-dlp/commit/7e09c147fdccb44806bbf601573adc4b77210a89) ([#8635](https://github.com/Rajeshwaran2001/yt-dlp/issues/8635)) by [trainman261](https://github.com/trainman261)
+- **youtube**: [Fix `like_count` extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/6b5d93b0b0240e287389d1d43b2d5293e18aa4cc) ([#8763](https://github.com/Rajeshwaran2001/yt-dlp/issues/8763)) by [Ganesh910](https://github.com/Ganesh910)
+
+#### Postprocessor changes
+- **webvtt**: [Fix 15f22b4880b6b3f71f350c64d70976ae65b9f1ca](https://github.com/Rajeshwaran2001/yt-dlp/commit/298230e550886b746c266724dd701d842ca2696e) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.12.11.140041
 
 #### Core changes
