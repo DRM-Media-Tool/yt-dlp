@@ -207,6 +207,7 @@
  - **bt:article**: Bergens Tidende Articles
  - **bt:vestlendingen**: Bergens Tidende - Vestlendingen
  - **Bundesliga**
+ - **Bundestag**
  - **BusinessInsider**
  - **BuzzFeed**
  - **BYUtv**: (**Currently broken**)
@@ -627,6 +628,7 @@
  - **JioSaavnAlbum**
  - **JioSaavnSong**
  - **Joj**
+ - **JoqrAg**: 超!A&G+ 文化放送 (f.k.a. AGQR) Nippon Cultural Broadcasting, Inc. (JOQR)
  - **Jove**
  - **JStream**
  - **JTBC**: jtbc.co.kr
@@ -716,6 +718,7 @@
  - **Lumni**
  - **lynda**: [*lynda*](## "netrc machine") lynda.com videos
  - **lynda:course**: [*lynda*](## "netrc machine") lynda.com online courses
+ - **maariv.co.il**
  - **MagellanTV**
  - **MagentaMusik360**
  - **mailru**: Видео@Mail.Ru
@@ -1174,6 +1177,7 @@
  - **Reuters**
  - **ReverbNation**
  - **RheinMainTV**
+ - **RinseFM**
  - **RMCDecouverte**
  - **RockstarGames**
  - **Rokfin**: [*rokfin*](## "netrc machine")

@@ -4,6 +4,28 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.12.21.204032
+
+#### Core changes
+- [Merge pull request #7 from Rajeshwaran2001/master](https://github.com/Rajeshwaran2001/yt-dlp/commit/4a04c9dea265defd069bfe32454d501f76974a2d) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update hotstar.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/41cd84edfca4d80421b35abc2f428d216c752038) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update release.yml](https://github.com/Rajeshwaran2001/yt-dlp/commit/48d32f4b879f1cb3511c186e2d3b6a30a247c848) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update sonyliv.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/f1b9232ac2fc70991c9dc4d4fdc50c3540ec7afd) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [licence_url displayed](https://github.com/Rajeshwaran2001/yt-dlp/commit/3eac3346db2f73353b6c3034dc76a4be38f91032) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
+#### Extractor changes
+- **bundestag**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/00a3e47bf5440c96025a76e08337ff2a475ed83e) ([#8783](https://github.com/Rajeshwaran2001/yt-dlp/issues/8783)) by [Grub4K](https://github.com/Grub4K)
+- **joqrag**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/db8b4edc7d0bd27da462f6fe82ff6e13e3d68a04) ([#8384](https://github.com/Rajeshwaran2001/yt-dlp/issues/8384)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **maariv**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/c5f01bf7d4b9426c87c3f8248de23934a56579e0) ([#8331](https://github.com/Rajeshwaran2001/yt-dlp/issues/8331)) by [amir16yp](https://github.com/amir16yp)
+- **rinsefm**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/c91af948e43570025e4aa887e248fd025abae394) ([#8778](https://github.com/Rajeshwaran2001/yt-dlp/issues/8778)) by [hashFactory](https://github.com/hashFactory)
+- **twitter**: [Extract stale tweets](https://github.com/Rajeshwaran2001/yt-dlp/commit/1c54a98e19d047e7c15184237b6ef8ad50af489c) ([#8724](https://github.com/Rajeshwaran2001/yt-dlp/issues/8724)) by [bashonly](https://github.com/bashonly)
+
+#### Networking changes
+- [Strip whitespace around header values](https://github.com/Rajeshwaran2001/yt-dlp/commit/196eb0fe77b78e2e5ca02c506c3837c2b1a7964c) ([#8802](https://github.com/Rajeshwaran2001/yt-dlp/issues/8802)) by [coletdjnz](https://github.com/coletdjnz)
+
+#### Misc. changes
+- **test**: networking: [Update tests for OpenSSL 3.2](https://github.com/Rajeshwaran2001/yt-dlp/commit/37755a037e612bfc608c3d4722e8ef2ce6a022ee) ([#8814](https://github.com/Rajeshwaran2001/yt-dlp/issues/8814)) by [bashonly](https://github.com/bashonly)
+
 ### 2023.12.14.180430
 
 #### Core changes
