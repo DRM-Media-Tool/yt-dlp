@@ -4,6 +4,11 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2023.12.22.125156
+
+#### Core changes
+- [sonylive double api call fixed](https://github.com/Rajeshwaran2001/yt-dlp/commit/a929ae681b4b3673de8966f5551c6bc854fbc7eb) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.12.21.204032
 
 #### Core changes
