@@ -149,10 +149,12 @@ class SonyLIVIE(InfoExtractor):
     def _real_extract(self, url):
         video_id = self._match_id(url)
         content = self._call_api(
-            '1.5', 'IN/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
+            '3.8', 'IN/MH/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
         if not self.get_param('allow_unplayable_formats') and content.get('isEncrypted'):
             self.report_drm(video_id)
         dash_url = content['videoURL']
+        la_url = content.get('LA_Details', {}).get('laURL', None)
+        print("licence_url:", la_url)
         headers = {
             'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
         }
@@ -164,13 +166,9 @@ class SonyLIVIE(InfoExtractor):
         for f in formats:
             f.setdefault('http_headers', {}).update(headers)
 
-        detail = self._call_api(
-            '3.8', 'IN/KA/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
         metadata = self._call_api(
             '1.6', 'IN/DETAIL/' + video_id, video_id)['containers'][0]['metadata']
         title = metadata['episodeTitle']
-        la_url = detail.get('LA_Details', {}).get('laURL', None)
-        print("licence_url:", la_url)
         subtitles = {}
         for sub in content.get('subtitle', []):
             sub_url = sub.get('subtitleUrl')
