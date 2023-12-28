@@ -8,6 +8,14 @@ import math
 import re
 import uuid
 
+from ..utils import (
+    float_or_none,
+    int_or_none,
+    parse_age_limit,
+    traverse_obj,
+    unified_strdate,
+)
+
 
 class JioCinemaBaseIE(InfoExtractor):
     deviceId = None
@@ -34,27 +42,34 @@ class JioCinemaBaseIE(InfoExtractor):
         return None
 
     def _get_media_metadata(self, media_id):
-        media_metadata = {}
         metadata_endpoint_template = 'https://content-jiovoot.voot.com/psapi/voot/v1/voot-web/content/query/asset-details?&ids=include:{media_id}&responseType=common&devicePlatformType=desktop'
 
         metadata_endpoint = metadata_endpoint_template.format(media_id=media_id)
 
-        media_metadata_response = self._download_json(metadata_endpoint, None, 'Fetching Episode Metadata')
+        video_data = self._download_json(metadata_endpoint, None, 'Fetching Episode Metadata')
 
-        if media_metadata_response and 'result' in media_metadata_response and media_metadata_response['result']:
-            media_metadata_response = media_metadata_response['result'][0]
-
-        if media_metadata_response['showName']:
-            media_metadata['series'] = media_metadata_response['showName']
-        media_metadata['title'] = media_metadata_response['fullTitle']
-        media_metadata['description'] = media_metadata_response['fullSynopsis']
-        if media_metadata_response['season']:
-            media_metadata['season_number'] = int(media_metadata_response['season'])
-        if media_metadata_response['episode']:
-            media_metadata['episode_number'] = int(media_metadata_response['episode'])
-        # media_metadata['subtitles'] = media_metadata_response['subtitles']
-
-        return media_metadata
+        return {
+            'id': media_id,
+            **traverse_obj(video_data, ('result', 0, {
+                'title': ('fullTitle', {str}),
+                'description': ('fullSynopsis', {str}),
+                'series': ('showName', {str}),
+                'season': ('seasonName', {int_or_none}),
+                'season_number': ('season', {int_or_none}),
+                'season_id': ('seasonId', {int_or_none}),
+                'episode': ('fullTitle', {str}),
+                'episode_number': ('episode', {int_or_none}),
+                'timestamp': ('uploadTime', {int_or_none}),
+                'release_date': ('telecastDate', {unified_strdate}),
+                'release_year': ('releaseYear', {unified_strdate}),
+                'age_limit': ('ageNemonic', {parse_age_limit}),
+                'parentalRating': ('ageNumeric', {int_or_none}),
+                'duration': ('duration', {float_or_none}),
+                'duration_formated': ('durationFormatted', {float_or_none}),
+                'genre': ('genres'),
+                'languages': ('languages')
+            })),
+        }
 
     def _get_stream_url(self, auth_token, media_id):
         stream_endpoint = 'https://apis-jiovoot.voot.com/playbackjv/v4/{media_id}'
