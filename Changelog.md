@@ -4,6 +4,13 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.01.18.090225
+
+#### Core changes
+- [Delete tt.txt](https://github.com/Rajeshwaran2001/yt-dlp/commit/e2056a084452bfb34637fb9ef30f5a5a4e7c8974) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [jiocinema thumbnail support added](https://github.com/Rajeshwaran2001/yt-dlp/commit/05e705a2fab295ff9b50a90a6d118af439e968da) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [metadata formated](https://github.com/Rajeshwaran2001/yt-dlp/commit/522cb9d749efa5919d777d181bcf646fc67a2b99) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2023.12.22.125156
 
 #### Core changes
