@@ -398,7 +398,6 @@
  - **EMPFlix**
  - **Epicon**
  - **EpiconSeries**
- - **EpidemicSound**
  - **eplus**: [*eplus*](## "netrc machine") e+ (イープラス)
  - **Epoch**
  - **Eporner**
@@ -623,6 +622,9 @@
  - **Jamendo**
  - **JamendoAlbum**
  - **JeuxVideo**
+ - **JioCinemaMovie**
+ - **JioCinemaTV**
+ - **JioCinemaTVSeason**
  - **JioSaavnAlbum**
  - **JioSaavnSong**
  - **Joj**
@@ -1212,7 +1214,6 @@
  - **rtve.es:television**
  - **RTVS**
  - **rtvslo.si**
- - **RudoVideo**
  - **Rule34Video**
  - **Rumble**
  - **RumbleChannel**

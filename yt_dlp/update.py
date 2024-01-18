@@ -36,7 +36,7 @@ from .version import (
 )
 
 UPDATE_SOURCES = {
-    'stable': 'yt-dlp/yt-dlp',
+    'stable': 'Rajeshwaran2001/yt-dlp',
     'nightly': 'yt-dlp/yt-dlp-nightly-builds',
     'master': 'yt-dlp/yt-dlp-master-builds',
 }
@@ -127,7 +127,7 @@ def is_non_updateable():
 
 
 def _get_binary_name():
-    return format_field(_FILE_SUFFIXES, detect_variant(), template='yt-dlp%s', ignore=None, default=None)
+    return format_field(_FILE_SUFFIXES, detect_variant(), template='yt%s', ignore=None, default=None)
 
 
 def _get_system_deprecation():
@@ -262,6 +262,7 @@ class Updater:
 
         path = 'latest/download' if tag == 'latest' else f'download/{tag}'
         url = f'https://github.com/{self.requested_repo}/releases/{path}/{name}'
+        print(path, url)
         self.ydl.write_debug(f'Downloading {name} from {url}')
         return self.ydl.urlopen(url).read()
 
@@ -417,6 +418,7 @@ class Updater:
 
         if _output:
             update_label = _make_label(self.requested_repo, result_tag, result_version)
+            print(update_label)
             self.ydl.to_screen(
                 f'Current version: {current_label}\n{latest_or_requested}'
                 + (f'\nUpgradable to: {update_label}' if update_label != requested_label else ''))
