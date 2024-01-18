@@ -398,6 +398,7 @@
  - **EMPFlix**
  - **Epicon**
  - **EpiconSeries**
+ - **EpidemicSound**
  - **eplus**: [*eplus*](## "netrc machine") e+ (イープラス)
  - **Epoch**
  - **Eporner**
@@ -1214,6 +1215,7 @@
  - **rtve.es:television**
  - **RTVS**
  - **rtvslo.si**
+ - **RudoVideo**
  - **Rule34Video**
  - **Rumble**
  - **RumbleChannel**
@@ -1472,7 +1474,6 @@
  - **TuneInPodcast**
  - **TuneInPodcastEpisode**
  - **TuneInStation**
- - **Turbo**
  - **tv.dfb.de**
  - **TV2**
  - **TV2Article**
@@ -1602,6 +1603,7 @@
  - **ViMP:Playlist**
  - **Vine**
  - **vine:user**
+ - **Viously**
  - **Viqeo**
  - **Viu**
  - **viu:ott**: [*viu*](## "netrc machine")

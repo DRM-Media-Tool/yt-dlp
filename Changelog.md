@@ -4,6 +4,12 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.01.18.131236
+
+#### Core changes
+- [Merge branch 'release' of https://github.com/Rajeshwaran2001/yt-dlp](https://github.com/Rajeshwaran2001/yt-dlp/commit/eb48299450a2e1be42e6a68db55ba43ef41e4988) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #8 from Rajeshwaran2001/master](https://github.com/Rajeshwaran2001/yt-dlp/commit/bf85900b9c448255e6708ea9b31ddf672cd93453) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2024.01.18.090225
 
 #### Core changes
