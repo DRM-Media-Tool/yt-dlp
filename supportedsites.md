@@ -90,8 +90,8 @@
  - **archive.org**: archive.org video and audio
  - **ArcPublishing**
  - **ARD**
- - **ARD:mediathek**
- - **ARDBetaMediathek**
+ - **ARDMediathek**
+ - **ARDMediathekCollection**
  - **Arkena**
  - **arte.sky.it**
  - **ArteTV**
@@ -576,7 +576,7 @@
  - **ign.com**
  - **IGNArticle**
  - **IGNVideo**
- - **IHeartRadio**
+ - **iheartradio**
  - **iheartradio:podcast**
  - **Iltalehti**
  - **imdb**: Internet Movie Database trailers
@@ -649,7 +649,7 @@
  - **Kicker**
  - **KickStarter**
  - **KickVOD**
- - **KinjaEmbed**
+ - **kinja:embed**
  - **KinoPoisk**
  - **Kommunetv**
  - **KompasVideo**
@@ -847,12 +847,12 @@
  - **Naver**
  - **Naver:live**
  - **navernow**
- - **NBA**
+ - **nba**
+ - **nba:channel**
+ - **nba:embed**
  - **nba:watch**
  - **nba:​watch:collection**
- - **NBAChannel**
- - **NBAEmbed**
- - **NBAWatchEmbed**
+ - **nba:​watch:embed**
  - **NBC**
  - **NBCNews**
  - **nbcolympics**
