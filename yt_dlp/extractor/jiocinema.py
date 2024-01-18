@@ -67,7 +67,8 @@ class JioCinemaBaseIE(InfoExtractor):
                 'duration': ('duration', {float_or_none}),
                 'duration_formated': ('durationFormatted', {float_or_none}),
                 'genre': ('genres'),
-                'languages': ('languages')
+                'languages': ('languages'),
+                'thumbnail': ('seo', 'ogImage', {str})
             })),
         }
 
