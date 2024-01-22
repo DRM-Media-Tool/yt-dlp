@@ -60,7 +60,7 @@ class JioCinemaBaseIE(InfoExtractor):
                 'episode': ('fullTitle', {str}),
                 'episode_number': ('episode', {int_or_none}),
                 'timestamp': ('uploadTime', {int_or_none}),
-                'release_date': ('telecastDate', {unified_strdate}),
+                'release_date': ('telecastDate', {int_or_none}),
                 'release_year': ('releaseYear', {int_or_none}),
                 'age_limit': ('ageNemonic', {parse_age_limit}),
                 'parentalRating': ('ageNumeric', {int_or_none}),
