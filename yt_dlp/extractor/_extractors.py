@@ -862,7 +862,7 @@ from .japandiet import (
 from .jeuxvideo import JeuxVideoIE
 from .jiocinema import (
     JioCinemaTVIE,
-    JioCinemaMovieIE,
+    JioCinemaIE,
     JioCinemaTVSeasonIE
 )
 from .jiosaavn import (

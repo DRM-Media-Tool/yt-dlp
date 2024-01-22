@@ -176,7 +176,7 @@ class JioCinemaTVIE(JioCinemaBaseIE):
     }
 
 
-class JioCinemaMovieIE(JioCinemaBaseIE):
+class JioCinemaIE(JioCinemaBaseIE):
     _VALID_URL = r'https?://(?:www\.)?jiocinema\.com/movies/(?P<media_name>[a-zA-Z0-9\-]*)/?(?P<season_number>[0-9]*)?/?(?P<episode_name>[a-zA-Z0-9\-]*)?/(?P<media_id>[a-zA-Z0-9\-]*)'
     _TEST = {
         'url': 'https://www.jiocinema.com/movies/i-choose-you-pokemon-the-movie/3777402',
