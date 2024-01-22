@@ -4,6 +4,12 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.01.22.094426
+
+#### Core changes
+- [Merge branch 'release' of https://github.com/Rajeshwaran2001/yt-dlp into release](https://github.com/Rajeshwaran2001/yt-dlp/commit/401a159e9aeb63e6a1f3bca3cff5a34ef80eb8ce) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/632f76313702ae0c5a9b4570496585bf546034a0) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2024.01.22.092207
 
 #### Core changes
