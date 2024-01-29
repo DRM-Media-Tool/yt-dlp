@@ -8,8 +8,8 @@ VARIANT = None
 
 UPDATE_HINT = None
 
-CHANNEL = 'Rajeshwaran2001/yt-dlp'
+CHANNEL = 'DRM-Media-Tool/yt-dlp'
 
-ORIGIN = 'Rajeshwaran2001/yt-dlp'
+ORIGIN = 'DRM-Media-Tool/yt-dlp'
 
 _pkg_version = '2024.01.22.094426'
