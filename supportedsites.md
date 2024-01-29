@@ -623,7 +623,7 @@
  - **Jamendo**
  - **JamendoAlbum**
  - **JeuxVideo**
- - **JioCinemaMovie**
+ - **JioCinema**
  - **JioCinemaTV**
  - **JioCinemaTVSeason**
  - **JioSaavnAlbum**
