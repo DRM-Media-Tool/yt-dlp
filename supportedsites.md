@@ -623,6 +623,9 @@
  - **Jamendo**
  - **JamendoAlbum**
  - **JeuxVideo**
+ - **JioCinema**
+ - **JioCinemaTV**
+ - **JioCinemaTVSeason**
  - **JioSaavnAlbum**
  - **JioSaavnSong**
  - **Joj**
@@ -1471,7 +1474,6 @@
  - **TuneInPodcast**
  - **TuneInPodcastEpisode**
  - **TuneInStation**
- - **Turbo**
  - **tv.dfb.de**
  - **TV2**
  - **TV2Article**
@@ -1601,6 +1603,7 @@
  - **ViMP:Playlist**
  - **Vine**
  - **vine:user**
+ - **Viously**
  - **Viqeo**
  - **Viu**
  - **viu:ott**: [*viu*](## "netrc machine")
