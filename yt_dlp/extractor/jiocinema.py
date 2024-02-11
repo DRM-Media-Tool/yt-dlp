@@ -72,7 +72,7 @@ class JioCinemaBaseIE(InfoExtractor):
         }
 
     def _get_stream_url(self, auth_token, media_id):
-        stream_endpoint = 'https://apis-jiovoot.voot.com/playbackjv/v4/{media_id}'
+        stream_endpoint = 'https://apis-jiovoot.voot.com/playbackjv/v5/{media_id}'
 
         stream_endpoint = stream_endpoint.format(media_id=media_id)
 
@@ -95,20 +95,20 @@ class JioCinemaBaseIE(InfoExtractor):
                 },
                 "frameRateCapability": [
                     {
-                        "frameRateSupport": "60fps",
-                        "videoQuality": "2160p"
+                        "frameRateSupport": "30fps",
+                        "videoQuality": "1440p  "
                     }
                 ]
             },
-            "continueWatchingRequired": True,
-            "dolby": False,
+            "continueWatchingRequired": False,
+            "dolby": True,
             "downloadRequest": False,
             "hevc": True,
             "kidsSafe": False,
-            "manufacturer": "Mac OS",
-            "model": "Mac OS",
+            "manufacturer": "Windows",
+            "model": "Windows",
             "multiAudioRequired": True,
-            "osVersion": "10.15.7",
+            "osVersion": "10",
             "parentalPinValid": True
         }
 
