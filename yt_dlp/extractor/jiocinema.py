@@ -5,7 +5,6 @@ import random
 import re
 import string
 import time
-import uuid
 
 from .common import InfoExtractor
 from ..utils import (
@@ -16,7 +15,6 @@ from ..utils import (
     parse_age_limit,
     traverse_obj,
     try_call,
-    unified_strdate,
     url_or_none,
 )
 
