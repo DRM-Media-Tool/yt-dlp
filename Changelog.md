@@ -4,6 +4,63 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.02.13.133058
+
+#### Core changes
+- [Add `--compat-options 2023`](https://github.com/Rajeshwaran2001/yt-dlp/commit/3725b4f0c93ca3943e6300013a9670e4ab757fda) ([#9084](https://github.com/Rajeshwaran2001/yt-dlp/issues/9084)) by [Grub4K](https://github.com/Grub4K)
+- [Don't select storyboard formats as fallback](https://github.com/Rajeshwaran2001/yt-dlp/commit/d63eae7e7ffb1f3e733e552b9e5e82355bfba214) by [bashonly](https://github.com/bashonly)
+- [Merge branch 'master' of https://github.com/DRM-Media-Tool/yt-dlp](https://github.com/Rajeshwaran2001/yt-dlp/commit/17315f0bc3aa49c09e12ddb582821439535c9342) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #10 from DRM-Media-Tool/master](https://github.com/Rajeshwaran2001/yt-dlp/commit/5a393e0a65b92b951f34e21e01b70fb4416cc40d) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/1f38e22734f0d7f3de510c8ed3850f06449be66f) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/cd831f8ca9662506d46286929bab05f110c03d9e) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/547b5cf3a0e88930a90275a4073f11243d31faab) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [jiocienema extractor updated](https://github.com/Rajeshwaran2001/yt-dlp/commit/e94f3a5c2de5e443f7030a53fd8943062c3e17f5) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- **cookies**
+    - [Fix `--cookies-from-browser` for `snap` Firefox](https://github.com/Rajeshwaran2001/yt-dlp/commit/cbed249aaa053a3f425b9bafc97f8dbd71c44487) ([#9016](https://github.com/Rajeshwaran2001/yt-dlp/issues/9016)) by [Grub4K](https://github.com/Grub4K)
+    - [Improve error message for Windows `--cookies-from-browser chrome` issue](https://github.com/Rajeshwaran2001/yt-dlp/commit/2792092afd367e39251ace1fb2819c855ab8919f) ([#9080](https://github.com/Rajeshwaran2001/yt-dlp/issues/9080)) by [Grub4K](https://github.com/Grub4K)
+
+#### Extractor changes
+- **ant1newsgrembed**: [Fix extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/1ed5ee2f045f717e814f84ba461dadc58e712266) ([#9191](https://github.com/Rajeshwaran2001/yt-dlp/issues/9191)) by [seproDev](https://github.com/seproDev)
+- **art19**: [Add extractors](https://github.com/Rajeshwaran2001/yt-dlp/commit/999ea80beb053491089d256104c4188aced3110f) ([#9099](https://github.com/Rajeshwaran2001/yt-dlp/issues/9099)) by [seproDev](https://github.com/seproDev)
+- **bilibili**: [Support `--no-playlist`](https://github.com/Rajeshwaran2001/yt-dlp/commit/e439693f729daf6fb15457baea1bca10ef5da34d) ([#9139](https://github.com/Rajeshwaran2001/yt-dlp/issues/9139)) by [c-basalt](https://github.com/c-basalt)
+- **bilibilisearch**: [Set cookie to fix extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/ffa017cfc5973b265c92248546fcf5020dc43eaf) ([#9119](https://github.com/Rajeshwaran2001/yt-dlp/issues/9119)) by [c-basalt](https://github.com/c-basalt)
+- **boosty**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/540b68298192874c75ad5ee4589bed64d02a7d55) ([#9144](https://github.com/Rajeshwaran2001/yt-dlp/issues/9144)) by [un-def](https://github.com/un-def)
+- **ccma**: [Extract 1080p DASH formats](https://github.com/Rajeshwaran2001/yt-dlp/commit/4253e3b7f483127bd812bdac02466f4a5b47ff34) ([#9130](https://github.com/Rajeshwaran2001/yt-dlp/issues/9130)) by [seproDev](https://github.com/seproDev)
+- **cineverse**: [Detect when login required](https://github.com/Rajeshwaran2001/yt-dlp/commit/fc2cc626f07328a6c71b5e21853e4cfa7b1e6256) ([#9081](https://github.com/Rajeshwaran2001/yt-dlp/issues/9081)) by [garret1317](https://github.com/garret1317)
+- **crooksandliars**: [Fix extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/03536126d32bd861e38536371f0cd5f1b71dcb7a) ([#9192](https://github.com/Rajeshwaran2001/yt-dlp/issues/9192)) by [seproDev](https://github.com/seproDev)
+- **eporner**: [Extract AV1 formats](https://github.com/Rajeshwaran2001/yt-dlp/commit/96d0f8c1cb8aec250c5614bfde6b5fb95f10819b) ([#9028](https://github.com/Rajeshwaran2001/yt-dlp/issues/9028)) by [michal-repo](https://github.com/michal-repo)
+- **facebook**: [Support events](https://github.com/Rajeshwaran2001/yt-dlp/commit/9b5efaf86b99a2664fff9fc725d275f766c3221d) ([#9055](https://github.com/Rajeshwaran2001/yt-dlp/issues/9055)) by [kclauhk](https://github.com/kclauhk)
+- **funk**: [Fix extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/cd0443fb14e2ed805abb02792473457553a123d1) ([#9194](https://github.com/Rajeshwaran2001/yt-dlp/issues/9194)) by [seproDev](https://github.com/seproDev)
+- **nfb**: [Add support for onf.ca and series](https://github.com/Rajeshwaran2001/yt-dlp/commit/4b8b0dded8c65cd5b2ab2e858058ba98c9bf49ff) ([#8997](https://github.com/Rajeshwaran2001/yt-dlp/issues/8997)) by [bashonly](https://github.com/bashonly), [rrgomes](https://github.com/rrgomes)
+- **ninaprotocol**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/62c65bfaf81e04e6746f6fdbafe384eb3edddfbc) ([#8946](https://github.com/Rajeshwaran2001/yt-dlp/issues/8946)) by [RaduManole](https://github.com/RaduManole), [seproDev](https://github.com/seproDev)
+- **nuum**: [Add extractors](https://github.com/Rajeshwaran2001/yt-dlp/commit/acaf806c15f0a802ba286c23af02a10cf4bd4731) ([#8868](https://github.com/Rajeshwaran2001/yt-dlp/issues/8868)) by [DmitryScaletta](https://github.com/DmitryScaletta), [seproDev](https://github.com/seproDev)
+- **nytimes**
+    - [Extract timestamp](https://github.com/Rajeshwaran2001/yt-dlp/commit/05420227aaab60a39c0f9ade069c5862be36b1fa) ([#9142](https://github.com/Rajeshwaran2001/yt-dlp/issues/9142)) by [SirElderling](https://github.com/SirElderling)
+    - [Overhaul extractors](https://github.com/Rajeshwaran2001/yt-dlp/commit/07256b9fee23960799024b95d5972abc7174aa81) ([#9075](https://github.com/Rajeshwaran2001/yt-dlp/issues/9075)) by [SirElderling](https://github.com/SirElderling)
+- **orf**: on: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/a0d50aabc5462aee302bd3f2663d3a3554875789) ([#9113](https://github.com/Rajeshwaran2001/yt-dlp/issues/9113)) by [HobbyistDev](https://github.com/HobbyistDev)
+- **peertube**: [Update instances](https://github.com/Rajeshwaran2001/yt-dlp/commit/35d96982f1033e36215d323317981ee17e8ab0d5) ([#9070](https://github.com/Rajeshwaran2001/yt-dlp/issues/9070)) by [Chocobozzz](https://github.com/Chocobozzz)
+- **prankcastpost**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/a2bac6b7adb7b0e955125838e20bb39eece630ce) ([#8933](https://github.com/Rajeshwaran2001/yt-dlp/issues/8933)) by [columndeeply](https://github.com/columndeeply)
+- **radiko**: [Extract more metadata](https://github.com/Rajeshwaran2001/yt-dlp/commit/e3ce2b385ec1f03fac9d4210c57fda77134495fc) ([#9115](https://github.com/Rajeshwaran2001/yt-dlp/issues/9115)) by [YoshichikaAAA](https://github.com/YoshichikaAAA)
+- **redtube**: [Support redtube.com.br URLs](https://github.com/Rajeshwaran2001/yt-dlp/commit/4a6ff0b47a700dee3ee5c54804c31965308479ae) ([#9103](https://github.com/Rajeshwaran2001/yt-dlp/issues/9103)) by [jazz1611](https://github.com/jazz1611)
+- **tvp**: [Support livestreams](https://github.com/Rajeshwaran2001/yt-dlp/commit/882e3b753c79c7799ce135c3a5edb72494b576af) ([#8860](https://github.com/Rajeshwaran2001/yt-dlp/issues/8860)) by [selfisekai](https://github.com/selfisekai)
+- **vbox7**: [Fix extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/67bb70cd700c8d4c3149cd9e0539a5f32c3d1ce6) ([#9100](https://github.com/Rajeshwaran2001/yt-dlp/issues/9100)) by [seproDev](https://github.com/seproDev)
+- **vimeo**: [Fix API headers](https://github.com/Rajeshwaran2001/yt-dlp/commit/8e765755f7f4909e1b535e61b7376b2d66e1ba6a) ([#9125](https://github.com/Rajeshwaran2001/yt-dlp/issues/9125)) by [bashonly](https://github.com/bashonly)
+- **zetland**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/2f4b57594673035a59d72f7667588da848820034) ([#9116](https://github.com/Rajeshwaran2001/yt-dlp/issues/9116)) by [HobbyistDev](https://github.com/HobbyistDev)
+
+#### Misc. changes
+- **build**
+    - [Bump `actions/upload-artifact` to v4 and adjust workflows](https://github.com/Rajeshwaran2001/yt-dlp/commit/3876429d72afb35247f4b2531eb9b16cfc7e0968) by [bashonly](https://github.com/bashonly)
+    - [Bump `conda-incubator/setup-miniconda` to v3](https://github.com/Rajeshwaran2001/yt-dlp/commit/b0059f0413a6ba6ab0a3aec1f00188ce083cd8bf) by [bashonly](https://github.com/bashonly)
+    - [Fix `secretstorage` for ARM builds](https://github.com/Rajeshwaran2001/yt-dlp/commit/920397634d1e84e76d2cb897bd6d69ba0c6bd5ca) by [bashonly](https://github.com/bashonly)
+    - [Migrate to `pyproject.toml` and `hatchling`](https://github.com/Rajeshwaran2001/yt-dlp/commit/775cde82dc5b1dc64ab0539a92dd8c7ba6c0ad33) by [bashonly](https://github.com/bashonly)
+    - [Move bundle scripts into `bundle` submodule](https://github.com/Rajeshwaran2001/yt-dlp/commit/a1b778428991b1779203bac243ef4e9b6baea90c) by [bashonly](https://github.com/bashonly)
+    - Makefile: [Add automated `CODE_FOLDERS` and `CODE_FILES`](https://github.com/Rajeshwaran2001/yt-dlp/commit/868d2f60a7cb59b410c8cbfb452cbdb072687b81) by [bashonly](https://github.com/bashonly)
+- **ci**: [Bump `actions/setup-python` to v5](https://github.com/Rajeshwaran2001/yt-dlp/commit/b14e818b37f62e3224da157b3ad768b3f0815fcd) by [bashonly](https://github.com/bashonly)
+- **cleanup**: [Build files cleanup](https://github.com/Rajeshwaran2001/yt-dlp/commit/867f637b95b342e1cb9f1dc3c6cf0ffe727187ce) by [bashonly](https://github.com/bashonly)
+- **devscripts**
+    - `install_deps`: [Add script and migrate to it](https://github.com/Rajeshwaran2001/yt-dlp/commit/b8a433aaca86b15cb9f1a451b0f69371d2fc22a9) by [bashonly](https://github.com/bashonly)
+    - `tomlparse`: [Add makeshift toml parser](https://github.com/Rajeshwaran2001/yt-dlp/commit/fd647775e27e030ab17387c249e2ebeba68f8ff0) by [Grub4K](https://github.com/Grub4K)
+
 ### 2024.01.29.183245
 
 #### Core changes
