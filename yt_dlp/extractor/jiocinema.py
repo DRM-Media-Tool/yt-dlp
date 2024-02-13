@@ -334,9 +334,6 @@ class JioVootSeriesBaseIE(JioBaseIE):
                     }), ('result', lambda _, v: v['id'] and url_or_none(v['slug'])))
                 if not episodes:
                     break
-                file_path = "output.json"
-                with open(file_path, 'w') as file:
-                    json.dump(episodes, file)
                 for episode in episodes:
                     yield self.url_result(
                         episode['slug'], self._RESULT_IE, **traverse_obj(episode, {
