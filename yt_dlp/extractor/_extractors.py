@@ -861,9 +861,8 @@ from .japandiet import (
 )
 from .jeuxvideo import JeuxVideoIE
 from .jiocinema import (
-    JioCinemaTVIE,
     JioCinemaIE,
-    JioCinemaTVSeasonIE
+    JioVootSeriesIE,
 )
 from .jiosaavn import (
     JioSaavnSongIE,
