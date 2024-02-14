@@ -4,6 +4,12 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.02.14.010805
+
+#### Core changes
+- [Merge branch 'release' of https://github.com/DRM-Media-Tool/yt-dlp into release](https://github.com/Rajeshwaran2001/yt-dlp/commit/4b9e230f091cbd540aff1e532f415546d5ee727a) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [build fix](https://github.com/Rajeshwaran2001/yt-dlp/commit/c9878b15e087d16a1c578a7423d6dcec1d917063) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2024.02.13.133058
 
 #### Core changes
