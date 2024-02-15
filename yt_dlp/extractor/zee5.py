@@ -12,7 +12,6 @@ from ..utils import (
     str_or_none,
     try_call,
     try_get,
-    unified_strdate,
     unified_timestamp,
     url_or_none,
 )
