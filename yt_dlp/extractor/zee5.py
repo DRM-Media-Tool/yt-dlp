@@ -133,7 +133,7 @@ class Zee5IE(InfoExtractor):
         genres_list = asset_data.get('genres', '')
         genres = [genre['value'] for genre in genres_list]
         show_data = json_data.get('showDetails', {})
-        if not self.get_param('allow_unplayable_formats') and 'premium' or 'advertisement_downloadable' in asset_data['business_type']:
+        if not self.get_param('allow_unplayable_formats') and 'premium' in asset_data['business_type']:
             self.report_drm(video_id)
         current_formats, current_subs = [], {}
         if asset_data.get('video_url'):
