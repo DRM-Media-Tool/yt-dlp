@@ -132,7 +132,12 @@ class Zee5IE(InfoExtractor):
         thumbnail = original_image_url.replace('270x152', '1920x770')
         genres_list = asset_data.get('genres', '')
         genres = [genre['value'] for genre in genres_list]
+        date = asset_data.get('release_date')
+        release_year = date[:4]
         show_data = json_data.get('showDetails', {})
+        key_os_details = json_data.get('keyOsDetails', {})
+        nl_data = key_os_details.get("nl")
+        sdrm_data = key_os_details.get("sdrm")
         if not self.get_param('allow_unplayable_formats') and 'premium' in asset_data['business_type']:
             self.report_drm(video_id)
         current_formats, current_subs = [], {}
@@ -144,6 +149,9 @@ class Zee5IE(InfoExtractor):
                 current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(asset_data['hls_url'], video_id, 'mp4', fatal=False)
         formats.extend(current_formats)
         subs = self._merge_subtitles(subs, current_subs)
+        print("LICENSE URL: https://spapi.zee5.com/widevine/getLicense")
+        print('nl: ', nl_data)
+        print('sdrm: ', sdrm_data)
 
         return {
             'id': video_id,
@@ -157,7 +165,7 @@ class Zee5IE(InfoExtractor):
             'alt_title': str_or_none(asset_data.get('original_title')),
             'uploader': str_or_none(asset_data.get('content_owner')),
             'age_limit': parse_age_limit(asset_data.get('age_rating')),
-            'release_date': unified_strdate(asset_data.get('release_date')),
+            'release_year': int_or_none(release_year),
             'timestamp': unified_timestamp(asset_data.get('release_date')),
             'thumbnail': thumbnail,
             'series': str_or_none(asset_data.get('tvshow_name')),
