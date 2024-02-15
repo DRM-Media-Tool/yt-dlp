@@ -4,6 +4,14 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.02.15.125540
+
+#### Core changes
+- [LICENSE  data displayed](https://github.com/Rajeshwaran2001/yt-dlp/commit/96398cc3dd80323cc009dea143777506001cb5dc) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update zee5.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/1878ed54619608ab4c274ddc5e6cb49a2f372adb) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [update zee5](https://github.com/Rajeshwaran2001/yt-dlp/commit/2ee78199bc77546710222bdb9431388746a6d211) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [zee5 meta data improved](https://github.com/Rajeshwaran2001/yt-dlp/commit/8bb7d021184ae7ff109992bfd5123397a5173c23) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2024.02.14.010805
 
 #### Core changes
