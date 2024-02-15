@@ -128,8 +128,12 @@ class Zee5IE(InfoExtractor):
                 'check_parental_control': False,
             }, headers={'content-type': 'application/json'}, data=json.dumps(data).encode('utf-8'))
         asset_data = json_data['assetDetails']
+        original_image_url = asset_data.get('image_url', '')
+        thumbnail = original_image_url.replace('270x152', '1920x770')
+        genres_list = asset_data.get('genres', '')
+        genres = [genre['value'] for genre in genres_list]
         show_data = json_data.get('showDetails', {})
-        if not self.get_param('allow_unplayable_formats') and 'advertisement_downloadable' in asset_data['business_type']:
+        if not self.get_param('allow_unplayable_formats') and 'premium' or 'advertisement_downloadable' in asset_data['business_type']:
             self.report_drm(video_id)
         current_formats, current_subs = [], {}
         if asset_data.get('video_url'):
@@ -147,6 +151,7 @@ class Zee5IE(InfoExtractor):
             'title': asset_data['title'],
             'formats': formats,
             'subtitles': subs,
+            'artist': asset_data.get('actors', ''),
             'duration': int_or_none(asset_data.get('duration')),
             'description': str_or_none(asset_data.get('description')),
             'alt_title': str_or_none(asset_data.get('original_title')),
@@ -154,8 +159,9 @@ class Zee5IE(InfoExtractor):
             'age_limit': parse_age_limit(asset_data.get('age_rating')),
             'release_date': unified_strdate(asset_data.get('release_date')),
             'timestamp': unified_timestamp(asset_data.get('release_date')),
-            'thumbnail': url_or_none(asset_data.get('image_url')),
+            'thumbnail': thumbnail,
             'series': str_or_none(asset_data.get('tvshow_name')),
+            'genres': genres,
             'season': try_get(show_data, lambda x: x['seasons']['title'], str),
             'season_number': int_or_none(try_get(show_data, lambda x: x['seasons'][0]['orderid'])),
             'episode_number': int_or_none(try_get(asset_data, lambda x: x['orderid'])),
