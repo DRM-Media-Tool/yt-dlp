@@ -281,6 +281,10 @@ class JioCinemaIE(JioBaseIE):
                 m3u8_url = url_data['url']
                 current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(
                     m3u8_url, video_id, ext='mp4', headers=self._API_HEADERS)
+            else:
+                mpd_url = url_data['url']
+                current_formats, current_subs = self._extract_mpd_formats_and_subtitles(
+                    mpd_url, video_id, headers=self._API_HEADERS)
 
         formats.extend(current_formats)
         subs = self._merge_subtitles(subs, current_subs)
