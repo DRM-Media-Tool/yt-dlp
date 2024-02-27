@@ -4,6 +4,14 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.02.27.020858
+
+#### Core changes
+- [Merge branch 'release' of https://github.com/DRM-Media-Tool/yt-dlp into release](https://github.com/Rajeshwaran2001/yt-dlp/commit/365316472442fd0aa5c223a9f103ae01ff773dc4) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/5edcf00a12bd4eb42ce3ddfff9471d2b1aa51d37) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/140f415ea50aeb302de6099967f8b16073780f32) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update zee5.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/1acb2bfe965aefb21a9c909d8cc970664e5d0c99) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
 ### 2024.02.15.125540
 
 #### Core changes
