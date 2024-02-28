@@ -376,7 +376,7 @@ jobs:
         if: |
           env.target_repo == github.repository
         run: |
-          title="${{ github.repository == 'yt-dlp/yt-dlp' && 'yt-dlp ' || '' }}"
+          title="${{ github.repository == 'Rajeshwaran2001/yt-dlp' && 'yt ' || '' }}"
           title+="${{ env.target_tag != env.version && format('{0} ', env.target_tag) || '' }}"
           gh release create \
             --notes-file ${{ inputs.prerelease && 'PRERELEASE_NOTES' || 'RELEASE_NOTES' }} \
