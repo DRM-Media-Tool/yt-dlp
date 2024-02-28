@@ -4,6 +4,16 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.02.28.180755
+
+#### Core changes
+- [Merge branch 'release' into feb-patch-2](https://github.com/Rajeshwaran2001/yt-dlp/commit/331e9d57f906d7b415e2f724cf55094b10b0c168) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #11 from DRM-Media-Tool/feb-patch-2](https://github.com/Rajeshwaran2001/yt-dlp/commit/758ddfb1bf57d1c142bcf828b541ef3de66dc756) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
+#### Extractor changes
+- **douyin**: [Fix extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/9ff946645568e71046487571eefa9cb524a5189b) ([#9239](https://github.com/Rajeshwaran2001/yt-dlp/issues/9239)) by [114514ns](https://github.com/114514ns), [bashonly](https://github.com/bashonly)
+- **mujrozhlas**: [Fix extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/4170b3d7120e06db3391eef39c5add18a1ddf2c3) ([#9306](https://github.com/Rajeshwaran2001/yt-dlp/issues/9306)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.02.27.020858
 
 #### Core changes

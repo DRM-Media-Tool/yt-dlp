@@ -283,7 +283,6 @@
  - **Clubic**: (**Currently broken**)
  - **Clyp**
  - **cmt.com**: (**Currently broken**)
- - **CNBC**
  - **CNBCVideo**
  - **CNN**
  - **CNNArticle**
@@ -453,6 +452,7 @@
  - **Filmweb**
  - **FiveThirtyEight**
  - **FiveTV**
+ - **FlexTV**
  - **Flickr**
  - **Floatplane**
  - **FloatplaneChannel**
@@ -890,10 +890,10 @@
  - **ndr:embed**
  - **ndr:​embed:base**
  - **NDTV**
- - **Nebula**: [*watchnebula*](## "netrc machine")
  - **nebula:channel**: [*watchnebula*](## "netrc machine")
- - **nebula:class**: [*watchnebula*](## "netrc machine")
+ - **nebula:media**: [*watchnebula*](## "netrc machine")
  - **nebula:subscriptions**: [*watchnebula*](## "netrc machine")
+ - **nebula:video**: [*watchnebula*](## "netrc machine")
  - **NekoHacker**
  - **NerdCubedFeed**
  - **netease:album**: 网易云音乐 - 专辑
@@ -1083,6 +1083,7 @@
  - **Platzi**: [*platzi*](## "netrc machine")
  - **PlatziCourse**: [*platzi*](## "netrc machine")
  - **player.sky.it**
+ - **playeur**
  - **PlayPlusTV**: [*playplustv*](## "netrc machine")
  - **PlayStuff**
  - **PlaySuisse**: [*playsuisse*](## "netrc machine")
@@ -1581,7 +1582,6 @@
  - **ustream:channel**
  - **ustudio**
  - **ustudio:embed**
- - **Utreon**
  - **Varzesh3**
  - **Vbox7**
  - **Veo**
