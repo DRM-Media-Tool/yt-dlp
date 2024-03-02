@@ -5,6 +5,7 @@ from .dailymotion import DailymotionIE
 from ..networking import HEADRequest
 from ..utils import (
     determine_ext,
+    ExtractorError,
     filter_dict,
     format_field,
     parse_iso8601,
