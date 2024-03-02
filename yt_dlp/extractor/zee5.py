@@ -158,7 +158,7 @@ class Zee5IE(InfoExtractor):
             'title': asset_data['title'],
             'formats': formats,
             'subtitles': subs,
-            'artist': asset_data.get('actors', ''),
+            'artist': str_or_none(asset_data.get('actors', '')),
             'duration': int_or_none(asset_data.get('duration')),
             'description': str_or_none(asset_data.get('description')),
             'alt_title': str_or_none(asset_data.get('original_title')),
