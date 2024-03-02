@@ -4,6 +4,28 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.03.02.175329
+
+#### Core changes
+- [Bugfix for 9ff946645568e71046487571eefa9cb524a5189b](https://github.com/Rajeshwaran2001/yt-dlp/commit/e546e5d3b33a50075e574a2e7b8eda7ea874d21e) by [bashonly](https://github.com/bashonly)
+- [Merge branch 'release' into march-first-patch](https://github.com/Rajeshwaran2001/yt-dlp/commit/afd0e6f84715516548608cbd7c0c1eaef57ea7c3) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #12 from DRM-Media-Tool/march-first-patch](https://github.com/Rajeshwaran2001/yt-dlp/commit/4bba4a62ee567d26f1cb23a27512f452886ed7c8) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update francetv.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/ff8e1742075ff86e2c3c46feb1b3cea95de9ce96) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [jiocinema download issue fixed](https://github.com/Rajeshwaran2001/yt-dlp/commit/3e722a68135b7e648799146cdc5b5c4d154d7b5c) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [jiocinema issue fixed](https://github.com/Rajeshwaran2001/yt-dlp/commit/e6501b2f0c34dddd4c971cb7f3deb7c80f931888) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [zee5 issue fixed](https://github.com/Rajeshwaran2001/yt-dlp/commit/ba3b45094b07c5371c64c5194b4a565cc27385cf) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
+#### Extractor changes
+- **cctv**: [Fix extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/6ad11fef65474bcf70f3a8556850d93c141e44a2) ([#9325](https://github.com/Rajeshwaran2001/yt-dlp/issues/9325)) by [src-tinkerer](https://github.com/src-tinkerer)
+- **chzzk**: live: [Support `--wait-for-video`](https://github.com/Rajeshwaran2001/yt-dlp/commit/804f2366117b7065552a1c3cddb9ec19b688a5c1) ([#9309](https://github.com/Rajeshwaran2001/yt-dlp/issues/9309)) by [hui1601](https://github.com/hui1601)
+- **francetv**: [Fix extractors](https://github.com/Rajeshwaran2001/yt-dlp/commit/9749ac7fecbfda391afbadf2870797ce0e382622) ([#9333](https://github.com/Rajeshwaran2001/yt-dlp/issues/9333)) by [bashonly](https://github.com/bashonly)
+- **niconico**: [Support DMS formats](https://github.com/Rajeshwaran2001/yt-dlp/commit/aa13a8e3dd3b698cc40ec438988b1ad834e11a41) ([#9282](https://github.com/Rajeshwaran2001/yt-dlp/issues/9282)) by [pzhlkj6612](https://github.com/pzhlkj6612), [xpadev-net](https://github.com/xpadev-net)
+- **rai**: [Fix m3u8 formats extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/8f423cf8051fbfeedd57cca00d106012e6e86a97) ([#9291](https://github.com/Rajeshwaran2001/yt-dlp/issues/9291)) by [nixxo](https://github.com/nixxo)
+- **tiktok**: [Fix webpage extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/d9b4154cbcb979d7e30af3a73b1bee422aae5aa3) ([#9327](https://github.com/Rajeshwaran2001/yt-dlp/issues/9327)) by [bashonly](https://github.com/bashonly)
+- **vimeo**: [Extract `live_status` and `release_timestamp`](https://github.com/Rajeshwaran2001/yt-dlp/commit/f0426e9ca57dd14b82e6c13afc17947614f1e8eb) ([#9290](https://github.com/Rajeshwaran2001/yt-dlp/issues/9290)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- **youtube**: [Bump Android and iOS client versions](https://github.com/Rajeshwaran2001/yt-dlp/commit/413d3675804599bc8fe419c19e36490fd8f0b30f) ([#9317](https://github.com/Rajeshwaran2001/yt-dlp/issues/9317)) by [bashonly](https://github.com/bashonly)
+- **zenporn**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/f00c0def7434fac3c88503c2a77c4b2419b8e5ca) ([#8509](https://github.com/Rajeshwaran2001/yt-dlp/issues/8509)) by [SirElderling](https://github.com/SirElderling)
+
 ### 2024.02.28.180755
 
 #### Core changes
