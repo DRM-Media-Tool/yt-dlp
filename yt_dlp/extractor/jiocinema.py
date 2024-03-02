@@ -33,6 +33,12 @@ class JioBaseIE(InfoExtractor):
     _APP_VERSION = {'appVersion': '5.0.0'}
     _API_SIGNATURES = 'o668nxgzwff'
 
+    _TAG_FIELDS = {
+        'language': 'language',
+        'acodec': 'audio_codec',
+        'vcodec': 'video_codec',
+    }
+
     def _cache_token(self, token_type):
         if token_type in ('access', 'all'):
             self.cache.store(
@@ -265,34 +271,22 @@ class JioCinemaIE(JioBaseIE):
                 'multiAudioRequired': True,
                 'osVersion': '10',
                 'parentalPinValid': True
-            })
+            })['data']['playbackUrls']
 
-        if traverse_obj(playback, ('code', {int})) == 474:
-            self.raise_geo_restricted(countries=['IN'])
         current_formats, current_subs = [], {}
-        for url_data in playback['data']['playbackUrls']:
+        for url_data in playback:
             if not self.get_param('allow_unplayable_formats') and url_data.get('encryption'):
                 self.report_drm(video_id)
-            if url_data['encryption'] == 'widevine':
-                mpd_url = url_data['url']
-                current_formats, current_subs = self._extract_mpd_formats_and_subtitles(
-                    mpd_url, video_id, headers=self._API_HEADERS)
-            elif url_data['encryption'] == 'aes128':
-                m3u8_url = url_data['url']
-                current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(
-                    m3u8_url, video_id, ext='mp4', headers=self._API_HEADERS)
+            format_url = url_or_none(url_data.get('url'))
+            if not format_url:
+                continue
+            if url_data['streamtype'] == 'dash':
+                current_formats, current_subs = self._extract_mpd_formats_and_subtitles(format_url, video_id, headers=self._API_HEADERS)
             elif url_data['streamtype'] == 'hls':
-                m3u8 = url_data['url']
-                current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(
-                    m3u8, video_id, headers=self._API_HEADERS, fatal=False)
-            elif url_data['streamtype'] == 'dash':
-                mpd = url_data['url']
-                current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(
-                    mpd, video_id, headers=self._API_HEADERS, fatal=False)
+                current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(format_url, video_id, ext='mp4', m3u8_id='hls', headers=self._API_HEADERS)
 
-        formats.extend(current_formats)
-        subs = self._merge_subtitles(subs, current_subs)
-
+            formats.extend(current_formats)
+            subs = self._merge_subtitles(subs, current_subs)
         return {
             'id': video_id,
             'formats': formats,
@@ -311,8 +305,8 @@ class JioCinemaIE(JioBaseIE):
                 'age_limit': ('ageNemonic', {parse_age_limit}),
                 'duration': ('totalDuration', {float_or_none}),
                 'parentalRating': ('ageNumeric', {int_or_none}),
-                'genre': ('genres'),
                 'languages': ('languages'),
+                'genres': ('genres'),
                 'thumbnail': ('seo', 'ogImage', {str})
             })),
         }
