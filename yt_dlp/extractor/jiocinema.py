@@ -8,6 +8,7 @@ import time
 
 from .common import InfoExtractor
 from ..utils import (
+    str_or_none,
     ExtractorError,
     float_or_none,
     int_or_none,
@@ -306,7 +307,7 @@ class JioCinemaIE(JioBaseIE):
                 'duration': ('totalDuration', {float_or_none}),
                 'parentalRating': ('ageNumeric', {int_or_none}),
                 'languages': ('languages'),
-                'genres': ('genres'),
+                'genre': ('genres', {str_or_none}),
                 'thumbnail': ('seo', 'ogImage', {str})
             })),
         }
