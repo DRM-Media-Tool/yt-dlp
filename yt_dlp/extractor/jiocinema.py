@@ -65,13 +65,6 @@ class JioBaseIE(InfoExtractor):
     def _refresh_token(self):
         if not JioBaseIE._REFRESH_TOKEN or not JioBaseIE._DEVICE_ID:
             raise ExtractorError('User token has expired', expected=True)
-        data = {
-            **self._APP_NAME,
-            'deviceId': self._DEVICE_ID,
-            'refreshToken': self._REFRESH_TOKEN,
-            **self._APP_VERSION,
-        }
-        print(data)
         response = self._call_auth_api(
             'token', 'refreshtoken', 'Refreshing token',
             headers={'accesstoken': self._ACCESS_TOKEN}, data={
