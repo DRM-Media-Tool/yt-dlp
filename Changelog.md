@@ -4,6 +4,37 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.03.09.093349
+
+#### Core changes
+- [Bugfix for aa13a8e3dd3b698cc40ec438988b1ad834e11a41](https://github.com/Rajeshwaran2001/yt-dlp/commit/40966e8da27bbf770dacf9be9363fcc3ad72cc9f) ([#9338](https://github.com/Rajeshwaran2001/yt-dlp/issues/9338)) by [pzhlkj6612](https://github.com/pzhlkj6612)
+- [Merge branch 'release' into march=patch-2](https://github.com/Rajeshwaran2001/yt-dlp/commit/4a9c6878cd072adc74ba1784f23b3b305db57e1d) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Merge pull request #13 from DRM-Media-Tool/march=patch-2](https://github.com/Rajeshwaran2001/yt-dlp/commit/1ebfa7b6ee7a3a0f24c1f8a4ec8acc31e47d72d7) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [Update jiocinema.py](https://github.com/Rajeshwaran2001/yt-dlp/commit/eb8b5800a279b025e52d9c586fc20f7d4b31a4f8) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [hotstar fixed](https://github.com/Rajeshwaran2001/yt-dlp/commit/bd2d5a535d77b4d88f71f89dc62542fbc723090c) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [zee5 fixed](https://github.com/Rajeshwaran2001/yt-dlp/commit/a5abd7a090c3d238166a6aae4535bf0d95fde292) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
+#### Extractor changes
+- **craftsy**: [Fix extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/96f3924bac174f2fd401f86f78e77d7e0c5ee008) ([#9384](https://github.com/Rajeshwaran2001/yt-dlp/issues/9384)) by [bashonly](https://github.com/bashonly)
+- **dailymotion**: [Support search](https://github.com/Rajeshwaran2001/yt-dlp/commit/11ffa92a61e5847b3dfa8975f91ecb3ac2178841) ([#8292](https://github.com/Rajeshwaran2001/yt-dlp/issues/8292)) by [drzraf](https://github.com/drzraf), [seproDev](https://github.com/seproDev)
+- **dumpert**: [Improve `_VALID_URL`](https://github.com/Rajeshwaran2001/yt-dlp/commit/eedb38ce4093500e19279d50b708fb9c18bf4dbf) ([#9320](https://github.com/Rajeshwaran2001/yt-dlp/issues/9320)) by [rvsit](https://github.com/rvsit)
+- **francetv**
+    - [Fix DAI livestreams](https://github.com/Rajeshwaran2001/yt-dlp/commit/e4fbe5f886a6693f2466877c12e99c30c5442ace) ([#9380](https://github.com/Rajeshwaran2001/yt-dlp/issues/9380)) by [bashonly](https://github.com/bashonly)
+    - [Fix m3u8 formats extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/ede624d1db649f5a4b61f8abbb746f365322de27) ([#9347](https://github.com/Rajeshwaran2001/yt-dlp/issues/9347)) by [bashonly](https://github.com/bashonly)
+- **generic**: [Follow https redirects properly](https://github.com/Rajeshwaran2001/yt-dlp/commit/c8c9039e640495700f76a13496e3418bdd4382ba) ([#9121](https://github.com/Rajeshwaran2001/yt-dlp/issues/9121)) by [seproDev](https://github.com/seproDev)
+- **newgrounds**: [Fix login and clean up extraction](https://github.com/Rajeshwaran2001/yt-dlp/commit/0fcefb92f3ebfc5cada19c1e85a715f020d0f333) ([#9356](https://github.com/Rajeshwaran2001/yt-dlp/issues/9356)) by [Grub4K](https://github.com/Grub4K), [mrmedieval](https://github.com/mrmedieval)
+- **ridehome**: [Add extractor](https://github.com/Rajeshwaran2001/yt-dlp/commit/cd7086c0d54ec1d7e02a30bd5bd934bdb2c54642) ([#8875](https://github.com/Rajeshwaran2001/yt-dlp/issues/8875)) by [SirElderling](https://github.com/SirElderling)
+- **roosterteeth**
+    - [Extract ad-free streams](https://github.com/Rajeshwaran2001/yt-dlp/commit/dd29e6e5fdf0f3758cb0829e73749832768f1a4e) ([#9355](https://github.com/Rajeshwaran2001/yt-dlp/issues/9355)) by [jkmartindale](https://github.com/jkmartindale)
+    - [Extract release date and timestamp](https://github.com/Rajeshwaran2001/yt-dlp/commit/dfd8c0b69683b1c11beea039a96dd2949026c1d7) ([#9393](https://github.com/Rajeshwaran2001/yt-dlp/issues/9393)) by [bashonly](https://github.com/bashonly)
+
+#### Misc. changes
+- **build**: [Add `default` optional dependency group](https://github.com/Rajeshwaran2001/yt-dlp/commit/cf91400a1dd6cc99b11a6d163e1af73b64d618c9) ([#9295](https://github.com/Rajeshwaran2001/yt-dlp/issues/9295)) by [bashonly](https://github.com/bashonly), [Grub4K](https://github.com/Grub4K)
+- **cleanup**
+    - [Fix infodict returned fields](https://github.com/Rajeshwaran2001/yt-dlp/commit/f4f9f6d00edcac6d4eb2b3fb78bf81326235d492) ([#8906](https://github.com/Rajeshwaran2001/yt-dlp/issues/8906)) by [seproDev](https://github.com/seproDev)
+    - [Mark broken and remove dead extractors](https://github.com/Rajeshwaran2001/yt-dlp/commit/df773c3d5d1cc1f877cf8582f0072e386fc49318) ([#9238](https://github.com/Rajeshwaran2001/yt-dlp/issues/9238)) by [seproDev](https://github.com/seproDev)
+- **test**: websockets: [Fix timeout test on Windows](https://github.com/Rajeshwaran2001/yt-dlp/commit/ac340d0745a9de5d494033e3507ef624ba25add3) ([#9344](https://github.com/Rajeshwaran2001/yt-dlp/issues/9344)) by [seproDev](https://github.com/seproDev)
+
 ### 2024.03.02.175329
 
 #### Core changes
