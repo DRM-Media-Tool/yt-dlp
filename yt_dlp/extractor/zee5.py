@@ -131,6 +131,8 @@ class Zee5IE(InfoExtractor):
         thumbnail = original_image_url.replace('270x152', '1920x770')
         genres_list = asset_data.get('genres', '')
         genres = [genre['value'] for genre in genres_list]
+        actor_list = asset_data.get('actors', '')
+        actors = [actor.split(':')[0] for actor in actor_list]
         date = asset_data.get('release_date')
         release_year = date[:4]
         show_data = json_data.get('showDetails', {})
@@ -158,7 +160,7 @@ class Zee5IE(InfoExtractor):
             'title': asset_data['title'],
             'formats': formats,
             'subtitles': subs,
-            'artist': str_or_none(asset_data.get('actors', '')),
+            'artists': actors,
             'duration': int_or_none(asset_data.get('duration')),
             'description': str_or_none(asset_data.get('description')),
             'alt_title': str_or_none(asset_data.get('original_title')),
