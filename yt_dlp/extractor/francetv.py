@@ -6,10 +6,9 @@ from .dailymotion import DailymotionIE
 from ..networking import HEADRequest
 from ..utils import (
     determine_ext,
+    ExtractorError,
     filter_dict,
     format_field,
-    int_or_none,
-    join_nonempty,
     parse_iso8601,
     smuggle_url,
     unsmuggle_url,
@@ -70,8 +69,6 @@ class FranceTVIE(InfoExtractor):
         videos = []
         title = None
         subtitle = None
-        episode_number = None
-        season_number = None
         image = None
         duration = None
         timestamp = None
@@ -104,9 +101,7 @@ class FranceTVIE(InfoExtractor):
             if meta:
                 if title is None:
                     title = meta.get('title')
-                # meta['pre_title'] contains season and episode number for series in format "S<ID> E<ID>"
-                season_number, episode_number = self._search_regex(
-                    r'S(\d+)\s*E(\d+)', meta.get('pre_title'), 'episode info', group=(1, 2), default=(None, None))
+                # XXX: what is meta['pre_title']?
                 if subtitle is None:
                     subtitle = meta.get('additional_title')
                 if image is None:
@@ -195,9 +190,13 @@ class FranceTVIE(InfoExtractor):
                 } for sheet in traverse_obj(spritesheets, (..., {url_or_none}))]
             })
 
+        if subtitle:
+            title += ' - %s' % subtitle
+        title = title.strip()
+
         return {
             'id': video_id,
-            'title': join_nonempty(title, subtitle, delim=' - ').strip(),
+            'title': title,
             'thumbnail': image,
             'duration': duration,
             'timestamp': timestamp,
@@ -228,9 +227,8 @@ class FranceTVSiteIE(FranceTVBaseInfoExtractor):
             'id': 'ec217ecc-0733-48cf-ac06-af1347b849d1',
             'ext': 'mp4',
             'title': '13h15, le dimanche... - Les mystères de Jésus',
+            'description': 'md5:75efe8d4c0a8205e5904498ffe1e1a42',
             'timestamp': 1502623500,
-            'duration': 2580,
-            'thumbnail': r're:^https?://.*\.jpg$',
             'upload_date': '20170813',
         },
         'params': {

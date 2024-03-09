@@ -12,7 +12,6 @@ from ..utils import (
     str_or_none,
     try_call,
     try_get,
-    unified_strdate,
     unified_timestamp,
     url_or_none,
 )
@@ -48,31 +47,6 @@ class Zee5IE(InfoExtractor):
             'episode_number': 0,
             'episode': 'Episode 0',
             'tags': list
-        },
-        'params': {
-            'format': 'bv',
-        },
-    }, {
-        'url': 'https://www.zee5.com/kids/kids-shows/bandbudh-aur-budbak/0-6-1899/yoga-se-hoga-bandbudh-aur-budbak/0-1-239839',
-        'info_dict': {
-            'id': '0-1-239839',
-            'ext': 'mp4',
-            'display_id': 'yoga-se-hoga-bandbudh-aur-budbak',
-            'title': 'Yoga Se Hoga-Bandbudh aur Budbak',
-            'duration': 659,
-            'description': compat_str,
-            'alt_title': 'Yoga Se Hoga-Bandbudh aur Budbak',
-            'uploader': 'Zee Entertainment Enterprises Ltd',
-            'release_date': '20150101',
-            'upload_date': '20150101',
-            'timestamp': 1420070400,
-            'thumbnail': r're:^https?://.*\.jpg$',
-            'series': 'Bandbudh Aur Budbak',
-            'season_number': 1,
-            'episode_number': 1,
-            'episode': 'Episode 1',
-            'season': 'Season 1',
-            'tags': list,
         },
         'params': {
             'format': 'bv',
@@ -132,6 +106,7 @@ class Zee5IE(InfoExtractor):
 
     def _real_extract(self, url):
         video_id, display_id = self._match_valid_url(url).group('id', 'display_id')
+        formats, subs = [], {}
         access_token_request = self._download_json(
             'https://launchapi.zee5.com/launch?platform_name=web_app',
             video_id, note='Downloading access token')['platform_token']
@@ -152,37 +127,50 @@ class Zee5IE(InfoExtractor):
                 'check_parental_control': False,
             }, headers={'content-type': 'application/json'}, data=json.dumps(data).encode('utf-8'))
         asset_data = json_data['assetDetails']
+        original_image_url = asset_data.get('image_url', '')
+        thumbnail = original_image_url.replace('270x152', '1920x770')
+        genres_list = asset_data.get('genres', '')
+        genres = [genre['value'] for genre in genres_list]
+        actor_list = asset_data.get('actors', '')
+        actors = [actor.split(':')[0] for actor in actor_list]
+        date = asset_data.get('release_date')
+        release_year = date[:4]
         show_data = json_data.get('showDetails', {})
-        if 'premium' in asset_data['business_type']:
-            raise ExtractorError('Premium content is DRM protected.', expected=True)
-        if not asset_data.get('hls_url'):
-            self.raise_login_required(self._LOGIN_HINT, metadata_available=True, method=None)
-        formats, m3u8_subs = self._extract_m3u8_formats_and_subtitles(asset_data['hls_url'], video_id, 'mp4', fatal=False)
+        key_os_details = json_data.get('keyOsDetails', {})
+        nl_data = key_os_details.get("nl")
+        sdrm_data = key_os_details.get("sdrm")
+        if not self.get_param('allow_unplayable_formats') and 'premium' in asset_data['business_type']:
+            self.report_drm(video_id)
+        current_formats, current_subs = [], {}
+        if asset_data.get('video_url'):
+            if 'mpd' in asset_data['video_url']:
+                mpd = asset_data['video_url'].get('mpd', {})
+                current_formats, current_subs = self._extract_mpd_formats_and_subtitles(mpd, video_id, fatal=False)
+            else:
+                current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(asset_data['hls_url'], video_id, 'mp4', fatal=False)
+        formats.extend(current_formats)
+        subs = self._merge_subtitles(subs, current_subs)
+        print("LICENSE URL: https://spapi.zee5.com/widevine/getLicense")
+        print('nl: ', nl_data)
+        print('sdrm: ', sdrm_data)
 
-        subtitles = {}
-        for sub in asset_data.get('subtitle_url', []):
-            sub_url = sub.get('url')
-            if not sub_url:
-                continue
-            subtitles.setdefault(sub.get('language', 'en'), []).append({
-                'url': self._proto_relative_url(sub_url),
-            })
-        subtitles = self._merge_subtitles(subtitles, m3u8_subs)
         return {
             'id': video_id,
             'display_id': display_id,
             'title': asset_data['title'],
             'formats': formats,
-            'subtitles': subtitles,
+            'subtitles': subs,
+            'artists': actors,
             'duration': int_or_none(asset_data.get('duration')),
             'description': str_or_none(asset_data.get('description')),
             'alt_title': str_or_none(asset_data.get('original_title')),
             'uploader': str_or_none(asset_data.get('content_owner')),
             'age_limit': parse_age_limit(asset_data.get('age_rating')),
-            'release_date': unified_strdate(asset_data.get('release_date')),
+            'release_year': int_or_none(release_year),
             'timestamp': unified_timestamp(asset_data.get('release_date')),
-            'thumbnail': url_or_none(asset_data.get('image_url')),
+            'thumbnail': thumbnail,
             'series': str_or_none(asset_data.get('tvshow_name')),
+            'genres': genres,
             'season': try_get(show_data, lambda x: x['seasons']['title'], str),
             'season_number': int_or_none(try_get(show_data, lambda x: x['seasons'][0]['orderid'])),
             'episode_number': int_or_none(try_get(asset_data, lambda x: x['orderid'])),
