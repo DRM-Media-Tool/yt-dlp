@@ -335,6 +335,8 @@ class HotStarIE(HotStarBaseIE):
         if formats:
             # print("Downloading URL:", formats[0]['url'])
             print("License URL:", licence_url)
+            with open('licence_urls.txt', 'a') as file:
+                file.write(licence_url + '\n')
 
         return {
             'id': video_id,

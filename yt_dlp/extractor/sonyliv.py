@@ -155,6 +155,8 @@ class SonyLIVIE(InfoExtractor):
         dash_url = content['videoURL']
         la_url = content.get('LA_Details', {}).get('laURL', None)
         print("licence_url:", la_url)
+        with open('licence_urls.txt', 'a') as file:
+            file.write(la_url + '\n')
         headers = {
             'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
         }
