@@ -4,6 +4,8 @@ import math
 import random
 import time
 import uuid
+import requests
+import re
 
 from .common import InfoExtractor
 from ..networking.exceptions import HTTPError
@@ -160,6 +162,14 @@ class SonyLIVIE(InfoExtractor):
         headers = {
             'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
         }
+        mpd_response = requests.get(dash_url, headers=headers)
+        pssh_matches = re.findall(
+            r'<cenc:pssh>(.*?)</cenc:pssh>', mpd_response.text, re.DOTALL)
+
+        if pssh_matches:
+            shortest_pssh = min(pssh_matches, key=len)
+            with open('pssh.txt', 'a') as file:
+                file.write(shortest_pssh + '\n')
         formats = self._extract_mpd_formats(
             dash_url, video_id, mpd_id='dash', headers=headers, fatal=False)
         formats.extend(self._extract_m3u8_formats(
