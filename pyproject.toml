@@ -44,7 +44,6 @@ dependencies = [
     "brotlicffi; implementation_name!='cpython'",
     "certifi",
     "mutagen",
-    requests,
     "pycryptodomex",
     "requests>=2.31.0,<3",
     "urllib3>=1.26.17,<3",

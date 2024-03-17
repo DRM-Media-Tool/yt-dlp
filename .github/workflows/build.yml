@@ -10,7 +10,7 @@ on:
         default: stable
         type: string
       unix:
-        default: true
+        default: false
         type: boolean
       linux_arm:
         default: false
@@ -53,7 +53,7 @@ on:
         type: string
       unix:
         description: yt-dlp, yt-dlp.tar.gz, yt-dlp_linux, yt-dlp_linux.zip
-        default: true
+        default: false
         type: boolean
       linux_arm:
         description: yt-dlp_linux_aarch64, yt-dlp_linux_armv7l
