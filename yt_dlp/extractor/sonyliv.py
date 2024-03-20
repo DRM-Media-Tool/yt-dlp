@@ -157,7 +157,7 @@ class SonyLIVIE(InfoExtractor):
         dash_url = content['videoURL']
         la_url = content.get('LA_Details', {}).get('laURL', None)
         print("licence_url:", la_url)
-        with open('licence_urls.txt', 'a') as file:
+        with open('licence_urls.txt', 'w') as file:
             file.write(la_url + '\n')
         headers = {
             'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
@@ -168,7 +168,7 @@ class SonyLIVIE(InfoExtractor):
 
         if pssh_matches:
             shortest_pssh = min(pssh_matches, key=len)
-            with open('pssh.txt', 'a') as file:
+            with open('pssh.txt', 'w') as file:
                 file.write(shortest_pssh + '\n')
         formats = self._extract_mpd_formats(
             dash_url, video_id, mpd_id='dash', headers=headers, fatal=False)
