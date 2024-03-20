@@ -181,6 +181,12 @@ class SonyLIVIE(InfoExtractor):
         metadata = self._call_api(
             '1.6', 'IN/DETAIL/' + video_id, video_id)['containers'][0]['metadata']
         title = metadata['episodeTitle']
+        SERIES=metadata['title']
+        SEASON_NUMBER= str(metadata['season'])
+        EPISODE_NUMBER=str(metadata['episodeId'])
+        SRN=SERIES+" "+ "Season:"+SEASON_NUMBER+" "+"Episode:"+EPISODE_NUMBER+" "+title
+        with open('TITLE.txt', 'w') as file:
+             file.write(SRN + '\n')
         subtitles = {}
         for sub in content.get('subtitle', []):
             sub_url = sub.get('subtitleUrl')
