@@ -281,6 +281,7 @@ class JioCinemaIE(JioBaseIE):
 
             formats.extend(current_formats)
             subs = self._merge_subtitles(subs, current_subs)
+            print("licenseurl: ", url_data.get('licenseurl'))
         return {
             'id': video_id,
             'formats': formats,
@@ -300,7 +301,7 @@ class JioCinemaIE(JioBaseIE):
                 'duration': ('totalDuration', {float_or_none}),
                 'parentalRating': ('ageNumeric', {int_or_none}),
                 'languages': ('languages'),
-                'genre': ('genres', {str_or_none}),
+                'genres': 'genres',
                 'thumbnail': ('seo', 'ogImage', {str})
             })),
         }
