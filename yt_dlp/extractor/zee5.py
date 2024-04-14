@@ -148,6 +148,8 @@ class Zee5IE(InfoExtractor):
                 current_formats, current_subs = self._extract_mpd_formats_and_subtitles(mpd, video_id, fatal=False)
             else:
                 current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(asset_data['hls_url'], video_id, 'mp4', fatal=False)
+        else:
+            current_formats, current_subs = self._extract_m3u8_formats_and_subtitles(asset_data['hls_url'], video_id, 'mp4', fatal=False)
         formats.extend(current_formats)
         subs = self._merge_subtitles(subs, current_subs)
         print("LICENSE URL: https://spapi.zee5.com/widevine/getLicense")
