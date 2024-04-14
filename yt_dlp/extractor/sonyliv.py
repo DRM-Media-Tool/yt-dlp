@@ -120,9 +120,17 @@ class SonyLIVIE(InfoExtractor):
 
     def _call_api(self, version, path, video_id):
         try:
+            json_data = {
+                'actionType': 'play',
+                'browser': 'Firefox',
+                'deviceId': f"{self._get_device_id()}",
+                'os': 'Windows',
+                'platform': 'web',
+                'hasLAURLEnabled': True
+            }
             return self._download_json(
-                'https://apiv2.sonyliv.com/AGL/%s/A/ENG/WEB/%s' % (version, path),
-                video_id, headers=self._HEADERS)['resultObj']
+                'https://apiv2.sonyliv.com/AGL/%s/SR/ENG/WEB/%s' % (version, path),
+                video_id, headers=self._HEADERS, data=json.dumps(json_data).encode('utf-8'))['resultObj']
         except ExtractorError as e:
             if isinstance(e.cause, HTTPError) and e.cause.status == 406 and self._parse_json(
                     e.cause.response.read().decode(), video_id)['message'] == 'Please subscribe to watch this content':
@@ -137,14 +145,17 @@ class SonyLIVIE(InfoExtractor):
 
     def _initialize_pre_login(self):
         self._HEADERS['security_token'] = self._call_api('1.4', 'ALL/GETTOKEN', None)
+        self._HEADERS['device_id'] = self._get_device_id()
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
         content = self._call_api(
-            '1.5', 'IN/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
+            '3.8', 'IN/MH/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
         if not self.get_param('allow_unplayable_formats') and content.get('isEncrypted'):
             self.report_drm(video_id)
         dash_url = content['videoURL']
+        la_url = content.get('LA_Details', {}).get('laURL', None)
+        print("licence_url:", la_url)
         headers = {
             'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
         }
@@ -174,11 +185,16 @@ class SonyLIVIE(InfoExtractor):
             'thumbnail': content.get('posterURL'),
             'description': metadata.get('longDescription') or metadata.get('shortDescription'),
             'timestamp': int_or_none(metadata.get('creationDate'), 1000),
+            'release_year': int_or_none(metadata.get('year')),
             'duration': int_or_none(metadata.get('duration')),
             'season_number': int_or_none(metadata.get('season')),
             'series': metadata.get('title'),
             'episode_number': int_or_none(metadata.get('episodeNumber')),
-            'release_year': int_or_none(metadata.get('year')),
+            'language': metadata.get('language'),
+            'genres': metadata.get('genres'),
+            'sub_genre': metadata.get('sub_genre'),
+            'cast_and_crew': metadata.get('cast_and_crew'),
+            'parentalRating': metadata.get('pcVodLabel'),
             'subtitles': subtitles,
         }
 

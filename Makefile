@@ -96,9 +96,9 @@ yt-dlp: $(CODE_FILES)
 	(cd zip && zip -q ../yt-dlp $(CODE_FILES) __main__.py)
 	rm -rf zip
 	echo '#!$(PYTHON)' > yt-dlp
-	cat yt-dlp.zip >> yt-dlp
+	cat yt-dlp.zip >> yt
 	rm yt-dlp.zip
-	chmod a+x yt-dlp
+	chmod a+x yt
 
 README.md: $(CODE_FILES) devscripts/make_readme.py
 	COLUMNS=80 $(PYTHON) yt_dlp/__main__.py --ignore-config --help | $(PYTHON) devscripts/make_readme.py
