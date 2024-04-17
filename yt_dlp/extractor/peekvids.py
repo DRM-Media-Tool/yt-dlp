@@ -1,5 +1,5 @@
 import re
-
+import json
 from .common import InfoExtractor
 from ..utils import (
     ExtractorError,
@@ -48,6 +48,9 @@ class PeekVidsBaseIE(InfoExtractor):
 
         info = self._search_json_ld(webpage, video_id, expected_type='VideoObject', default={})
         info.pop('url', None)
+        file_path = "output.json"
+        with open(file_path, 'w') as file:
+            json.dump(info, file)
 
         # may not have found the thumbnail if it was in a list in the ld+json
         info.setdefault('thumbnail', self._og_search_thumbnail(webpage))

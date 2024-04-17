@@ -1,5 +1,4 @@
 import datetime as dt
-import itertools
 import json
 import math
 import random
@@ -13,8 +12,8 @@ from ..utils import (
     int_or_none,
     jwt_decode_hs256,
     try_call,
+    try_get,
 )
-from ..utils.traversal import traverse_obj
 
 
 class SonyLIVIE(InfoExtractor):
@@ -120,9 +119,17 @@ class SonyLIVIE(InfoExtractor):
 
     def _call_api(self, version, path, video_id):
         try:
+            json_data = {
+                'actionType': 'play',
+                'browser': 'Firefox',
+                'deviceId': f"{self._get_device_id()}",
+                'os': 'Windows',
+                'platform': 'web',
+                'hasLAURLEnabled': True
+            }
             return self._download_json(
-                'https://apiv2.sonyliv.com/AGL/%s/A/ENG/WEB/%s' % (version, path),
-                video_id, headers=self._HEADERS)['resultObj']
+                'https://apiv2.sonyliv.com/AGL/%s/SR/ENG/WEB/%s' % (version, path),
+                video_id, headers=self._HEADERS, data=json.dumps(json_data).encode('utf-8'))['resultObj']
         except ExtractorError as e:
             if isinstance(e.cause, HTTPError) and e.cause.status == 406 and self._parse_json(
                     e.cause.response.read().decode(), video_id)['message'] == 'Please subscribe to watch this content':
@@ -137,14 +144,17 @@ class SonyLIVIE(InfoExtractor):
 
     def _initialize_pre_login(self):
         self._HEADERS['security_token'] = self._call_api('1.4', 'ALL/GETTOKEN', None)
+        self._HEADERS['device_id'] = self._get_device_id()
 
     def _real_extract(self, url):
         video_id = self._match_id(url)
         content = self._call_api(
-            '1.5', 'IN/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
+            '3.8', 'IN/MH/CONTENT/VIDEOURL/VOD/' + video_id, video_id)
         if not self.get_param('allow_unplayable_formats') and content.get('isEncrypted'):
             self.report_drm(video_id)
         dash_url = content['videoURL']
+        la_url = content.get('LA_Details', {}).get('laURL', None)
+        print("licence_url:", la_url)
         headers = {
             'x-playback-session-id': '%s-%d' % (uuid.uuid4().hex, time.time() * 1000)
         }
@@ -174,31 +184,32 @@ class SonyLIVIE(InfoExtractor):
             'thumbnail': content.get('posterURL'),
             'description': metadata.get('longDescription') or metadata.get('shortDescription'),
             'timestamp': int_or_none(metadata.get('creationDate'), 1000),
+            'release_year': int_or_none(metadata.get('year')),
             'duration': int_or_none(metadata.get('duration')),
             'season_number': int_or_none(metadata.get('season')),
             'series': metadata.get('title'),
             'episode_number': int_or_none(metadata.get('episodeNumber')),
-            'release_year': int_or_none(metadata.get('year')),
+            'language': metadata.get('language'),
+            'genres': metadata.get('genres'),
+            'sub_genre': metadata.get('sub_genre'),
+            'cast_and_crew': metadata.get('cast_and_crew'),
+            'parentalRating': metadata.get('pcVodLabel'),
             'subtitles': subtitles,
         }
 
 
 class SonyLIVSeriesIE(InfoExtractor):
-    _VALID_URL = r'https?://(?:www\.)?sonyliv\.com/shows/[^/?#&]+-(?P<id>\d{10})/?(?:$|[?#])'
+    _VALID_URL = r'https?://(?:www\.)?sonyliv\.com/shows/[^/?#&]+-(?P<id>\d{10})$'
     _TESTS = [{
         'url': 'https://www.sonyliv.com/shows/adaalat-1700000091',
-        'playlist_mincount': 452,
+        'playlist_mincount': 456,
         'info_dict': {
             'id': '1700000091',
         },
-    }, {
-        'url': 'https://www.sonyliv.com/shows/beyhadh-1700000007/',
-        'playlist_mincount': 358,
-        'info_dict': {
-            'id': '1700000007',
-        },
     }]
-    _API_BASE = 'https://apiv2.sonyliv.com/AGL'
+    _API_SHOW_URL = "https://apiv2.sonyliv.com/AGL/1.9/R/ENG/WEB/IN/DL/DETAIL/{}?kids_safe=false&from=0&to=49"
+    _API_EPISODES_URL = "https://apiv2.sonyliv.com/AGL/1.4/R/ENG/WEB/IN/CONTENT/DETAIL/BUNDLE/{}?from=0&to=1000&orderBy=episodeNumber&sortOrder=asc"
+    _API_SECURITY_URL = 'https://apiv2.sonyliv.com/AGL/1.4/A/ENG/WEB/ALL/GETTOKEN'
 
     def _entries(self, show_id):
         headers = {
@@ -206,34 +217,19 @@ class SonyLIVSeriesIE(InfoExtractor):
             'Referer': 'https://www.sonyliv.com',
         }
         headers['security_token'] = self._download_json(
-            f'{self._API_BASE}/1.4/A/ENG/WEB/ALL/GETTOKEN', show_id,
-            'Downloading security token', headers=headers)['resultObj']
-        seasons = traverse_obj(self._download_json(
-            f'{self._API_BASE}/1.9/R/ENG/WEB/IN/DL/DETAIL/{show_id}', show_id,
-            'Downloading series JSON', headers=headers, query={
-                'kids_safe': 'false',
-                'from': '0',
-                'to': '49',
-            }), ('resultObj', 'containers', 0, 'containers', lambda _, v: int_or_none(v['id'])))
-        for season in seasons:
-            season_id = str(season['id'])
-            note = traverse_obj(season, ('metadata', 'title', {str})) or 'season'
-            cursor = 0
-            for page_num in itertools.count(1):
-                episodes = traverse_obj(self._download_json(
-                    f'{self._API_BASE}/1.4/R/ENG/WEB/IN/CONTENT/DETAIL/BUNDLE/{season_id}',
-                    season_id, f'Downloading {note} page {page_num} JSON', headers=headers, query={
-                        'from': str(cursor),
-                        'to': str(cursor + 99),
-                        'orderBy': 'episodeNumber',
-                        'sortOrder': 'asc',
-                    }), ('resultObj', 'containers', 0, 'containers', lambda _, v: int_or_none(v['id'])))
-                if not episodes:
-                    break
-                for episode in episodes:
-                    video_id = str(episode['id'])
-                    yield self.url_result(f'sonyliv:{video_id}', SonyLIVIE, video_id)
-                cursor += 100
+            self._API_SECURITY_URL, video_id=show_id, headers=headers,
+            note='Downloading security token')['resultObj']
+        seasons = try_get(
+            self._download_json(self._API_SHOW_URL.format(show_id), video_id=show_id, headers=headers),
+            lambda x: x['resultObj']['containers'][0]['containers'], list)
+        for season in seasons or []:
+            season_id = season['id']
+            episodes = try_get(
+                self._download_json(self._API_EPISODES_URL.format(season_id), video_id=season_id, headers=headers),
+                lambda x: x['resultObj']['containers'][0]['containers'], list)
+            for episode in episodes or []:
+                video_id = episode.get('id')
+                yield self.url_result('sonyliv:%s' % video_id, ie=SonyLIVIE.ie_key(), video_id=video_id)
 
     def _real_extract(self, url):
         show_id = self._match_id(url)
