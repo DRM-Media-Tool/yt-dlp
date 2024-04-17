@@ -638,6 +638,10 @@
  - **jiosaavn:album**
  - **jiosaavn:playlist**
  - **jiosaavn:song**
+ - **JioCinema**: [*JioCinema*](## "netrc machine")
+ - **JioSaavnAlbum**
+ - **JioSaavnSong**
+ - **JioVootSeries**: [*JioCinema*](## "netrc machine")
  - **Joj**
  - **JoqrAg**: 超!A&G+ 文化放送 (f.k.a. AGQR) Nippon Cultural Broadcasting, Inc. (JOQR)
  - **Jove**
