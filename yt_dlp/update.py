@@ -36,7 +36,7 @@ from .version import (
 )
 
 UPDATE_SOURCES = {
-    'stable': 'yt-dlp/yt-dlp',
+    'stable': 'DRM-Media-Tool/yt-dlp',
     'nightly': 'yt-dlp/yt-dlp-nightly-builds',
     'master': 'yt-dlp/yt-dlp-master-builds',
 }
@@ -127,7 +127,7 @@ def is_non_updateable():
 
 
 def _get_binary_name():
-    return format_field(_FILE_SUFFIXES, detect_variant(), template='yt-dlp%s', ignore=None, default=None)
+    return format_field(_FILE_SUFFIXES, detect_variant(), template='yt%s', ignore=None, default=None)
 
 
 def _get_system_deprecation():

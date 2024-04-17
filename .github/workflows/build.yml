@@ -13,7 +13,7 @@ on:
         default: true
         type: boolean
       linux_arm:
-        default: true
+        default: false
         type: boolean
       macos:
         default: true
@@ -52,27 +52,27 @@ on:
         default: stable
         type: string
       unix:
-        description: yt-dlp, yt-dlp.tar.gz, yt-dlp_linux, yt-dlp_linux.zip
+        description: yt, yt.tar.gz, yt_linux, yt_linux.zip
         default: true
         type: boolean
       linux_arm:
-        description: yt-dlp_linux_aarch64, yt-dlp_linux_armv7l
-        default: true
+        description: yt_linux_aarch64, yt_linux_armv7l
+        default: false
         type: boolean
       macos:
-        description: yt-dlp_macos, yt-dlp_macos.zip
+        description: yt_macos, yt_macos.zip
         default: true
         type: boolean
       macos_legacy:
-        description: yt-dlp_macos_legacy
+        description: yt_macos_legacy
         default: true
         type: boolean
       windows:
-        description: yt-dlp.exe, yt-dlp_min.exe, yt-dlp_win.zip
+        description: yt.exe, yt_min.exe, yt_win.zip
         default: true
         type: boolean
       windows32:
-        description: yt-dlp_x86.exe
+        description: yt_x86.exe
         default: true
         type: boolean
       meta_files:
@@ -147,20 +147,20 @@ jobs:
           unset LD_LIBRARY_PATH  # Harmful; set by setup-python
           conda activate build
           python -m bundle.pyinstaller --onedir
-          (cd ./dist/yt-dlp_linux && zip -r ../yt-dlp_linux.zip .)
+          (cd ./dist/yt_linux && zip -r ../yt_linux.zip .)
           python -m bundle.pyinstaller
-          mv ./dist/yt-dlp_linux ./yt-dlp_linux
-          mv ./dist/yt-dlp_linux.zip ./yt-dlp_linux.zip
+          mv ./dist/yt_linux ./yt_linux
+          mv ./dist/yt_linux.zip ./yt_linux.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          binaries=("yt-dlp" "yt-dlp_linux")
+          binaries=("yt" "yt_linux")
           for binary in "${binaries[@]}"; do
             chmod +x ./${binary}
             cp ./${binary} ./${binary}_downgraded
             version="$(./${binary} --version)"
-            ./${binary}_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
+            ./${binary}_downgraded -v --update-to DRM-Media-Tool/yt-dlp@2024.03.17.162320
             downgraded_version="$(./${binary}_downgraded --version)"
             [[ "$version" != "$downgraded_version" ]]
           done
@@ -170,10 +170,10 @@ jobs:
         with:
           name: build-bin-${{ github.job }}
           path: |
-            yt-dlp
-            yt-dlp.tar.gz
-            yt-dlp_linux
-            yt-dlp_linux.zip
+            yt
+            yt.tar.gz
+            yt_linux
+            yt_linux.zip
           compression-level: 0
 
   linux_arm:
@@ -220,11 +220,11 @@ jobs:
 
             if ${{ vars.UPDATE_TO_VERIFICATION && 'true' || 'false' }}; then
               arch="${{ (matrix.architecture == 'armv7' && 'armv7l') || matrix.architecture }}"
-              chmod +x ./dist/yt-dlp_linux_${arch}
-              cp ./dist/yt-dlp_linux_${arch} ./dist/yt-dlp_linux_${arch}_downgraded
-              version="$(./dist/yt-dlp_linux_${arch} --version)"
-              ./dist/yt-dlp_linux_${arch}_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
-              downgraded_version="$(./dist/yt-dlp_linux_${arch}_downgraded --version)"
+              chmod +x ./dist/yt_linux_${arch}
+              cp ./dist/yt_linux_${arch} ./dist/yt_linux_${arch}_downgraded
+              version="$(./dist/yt_linux_${arch} --version)"
+              ./dist/yt_linux_${arch}_downgraded -v --update-to DRM-Media-Tool/yt-dlp@2024.03.17.162320
+              downgraded_version="$(./dist/yt_linux_${arch}_downgraded --version)"
               [[ "$version" != "$downgraded_version" ]]
             fi
 
@@ -233,7 +233,7 @@ jobs:
         with:
           name: build-bin-linux_${{ matrix.architecture }}
           path: | # run-on-arch-action designates armv7l as armv7
-            repo/dist/yt-dlp_linux_${{ (matrix.architecture == 'armv7' && 'armv7l') || matrix.architecture }}
+            repo/dist/yt_linux_${{ (matrix.architecture == 'armv7' && 'armv7l') || matrix.architecture }}
           compression-level: 0
 
   macos:
@@ -275,17 +275,17 @@ jobs:
       - name: Build
         run: |
           python3 -m bundle.pyinstaller --target-architecture universal2 --onedir
-          (cd ./dist/yt-dlp_macos && zip -r ../yt-dlp_macos.zip .)
+          (cd ./dist/yt_macos && zip -r ../yt_macos.zip .)
           python3 -m bundle.pyinstaller --target-architecture universal2
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          chmod +x ./dist/yt-dlp_macos
-          cp ./dist/yt-dlp_macos ./dist/yt-dlp_macos_downgraded
-          version="$(./dist/yt-dlp_macos --version)"
-          ./dist/yt-dlp_macos_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
-          downgraded_version="$(./dist/yt-dlp_macos_downgraded --version)"
+          chmod +x ./dist/yt_macos
+          cp ./dist/yt_macos ./dist/yt_macos_downgraded
+          version="$(./dist/yt_macos --version)"
+          ./dist/yt_macos_downgraded -v --update-to DRM-Media-Tool/yt-dlp@2024.03.17.162320
+          downgraded_version="$(./dist/yt_macos_downgraded --version)"
           [[ "$version" != "$downgraded_version" ]]
 
       - name: Upload artifacts
@@ -293,8 +293,8 @@ jobs:
         with:
           name: build-bin-${{ github.job }}
           path: |
-            dist/yt-dlp_macos
-            dist/yt-dlp_macos.zip
+            dist/yt_macos
+            dist/yt_macos.zip
           compression-level: 0
 
   macos_legacy:
@@ -329,16 +329,16 @@ jobs:
       - name: Build
         run: |
           python3 -m bundle.pyinstaller
-          mv dist/yt-dlp_macos dist/yt-dlp_macos_legacy
+          mv dist/yt_macos dist/yt_macos_legacy
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          chmod +x ./dist/yt-dlp_macos_legacy
-          cp ./dist/yt-dlp_macos_legacy ./dist/yt-dlp_macos_legacy_downgraded
-          version="$(./dist/yt-dlp_macos_legacy --version)"
-          ./dist/yt-dlp_macos_legacy_downgraded -v --update-to yt-dlp/yt-dlp@2023.03.04
-          downgraded_version="$(./dist/yt-dlp_macos_legacy_downgraded --version)"
+          chmod +x ./dist/yt_macos_legacy
+          cp ./dist/yt_macos_legacy ./dist/yt_macos_legacy_downgraded
+          version="$(./dist/yt_macos_legacy --version)"
+          ./dist/yt_macos_legacy_downgraded -v --update-to DRM-Media-Tool/yt-dlp@2024.03.17.162320
+          downgraded_version="$(./dist/yt_macos_legacy_downgraded --version)"
           [[ "$version" != "$downgraded_version" ]]
 
       - name: Upload artifacts
@@ -346,7 +346,7 @@ jobs:
         with:
           name: build-bin-${{ github.job }}
           path: |
-            dist/yt-dlp_macos_legacy
+            dist/yt_macos_legacy
           compression-level: 0
 
   windows:
@@ -372,18 +372,18 @@ jobs:
       - name: Build
         run: |
           python -m bundle.py2exe
-          Move-Item ./dist/yt-dlp.exe ./dist/yt-dlp_min.exe
+          Move-Item ./dist/yt.exe ./dist/yt_min.exe
           python -m bundle.pyinstaller
           python -m bundle.pyinstaller --onedir
-          Compress-Archive -Path ./dist/yt-dlp/* -DestinationPath ./dist/yt-dlp_win.zip
+          Compress-Archive -Path ./dist/yt/* -DestinationPath ./dist/yt_win.zip
 
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          foreach ($name in @("yt-dlp","yt-dlp_min")) {
+          foreach ($name in @("yt","yt_min")) {
             Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
             $version = & "./dist/${name}.exe" --version
-            & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
+            & "./dist/${name}_downgraded.exe" -v --update-to DRM-Media-Tool/yt-dlp@2024.03.17.162320
             $downgraded_version = & "./dist/${name}_downgraded.exe" --version
             if ($version -eq $downgraded_version) {
               exit 1
@@ -395,9 +395,9 @@ jobs:
         with:
           name: build-bin-${{ github.job }}
           path: |
-            dist/yt-dlp.exe
-            dist/yt-dlp_min.exe
-            dist/yt-dlp_win.zip
+            dist/yt.exe
+            dist/yt_min.exe
+            dist/yt_win.zip
           compression-level: 0
 
   windows32:
@@ -428,10 +428,10 @@ jobs:
       - name: Verify --update-to
         if: vars.UPDATE_TO_VERIFICATION
         run: |
-          foreach ($name in @("yt-dlp_x86")) {
+          foreach ($name in @("yt_x86")) {
             Copy-Item "./dist/${name}.exe" "./dist/${name}_downgraded.exe"
             $version = & "./dist/${name}.exe" --version
-            & "./dist/${name}_downgraded.exe" -v --update-to yt-dlp/yt-dlp@2023.03.04
+            & "./dist/${name}_downgraded.exe" -v --update-to DRM-Media-Tool/yt-dlp@2024.03.17.162320
             $downgraded_version = & "./dist/${name}_downgraded.exe" --version
             if ($version -eq $downgraded_version) {
               exit 1
@@ -443,7 +443,7 @@ jobs:
         with:
           name: build-bin-${{ github.job }}
           path: |
-            dist/yt-dlp_x86.exe
+            dist/yt_x86.exe
           compression-level: 0
 
   meta_files:
@@ -478,9 +478,9 @@ jobs:
           lock 2022.08.18.36 .+ Python 3\.6
           lock 2023.11.16 (?!win_x86_exe).+ Python 3\.7
           lock 2023.11.16 win_x86_exe .+ Windows-(?:Vista|2008Server)
-          lockV2 yt-dlp/yt-dlp 2022.08.18.36 .+ Python 3\.6
-          lockV2 yt-dlp/yt-dlp 2023.11.16 (?!win_x86_exe).+ Python 3\.7
-          lockV2 yt-dlp/yt-dlp 2023.11.16 win_x86_exe .+ Windows-(?:Vista|2008Server)
+          lockV2 Rajeshwaran2001/yt-dlp 2024.03.17.162320 .+ Python 3\.6
+          lockV2 Rajeshwaran2001/yt-dlp 2024.03.17.162320 (?!win_x86_exe).+ Python 3\.7
+          lockV2 Rajeshwaran2001/yt-dlp 2024.03.17.162320 win_x86_exe .+ Windows-(?:Vista|2008Server)
           lockV2 yt-dlp/yt-dlp-nightly-builds 2023.11.15.232826 (?!win_x86_exe).+ Python 3\.7
           lockV2 yt-dlp/yt-dlp-nightly-builds 2023.11.15.232826 win_x86_exe .+ Windows-(?:Vista|2008Server)
           lockV2 yt-dlp/yt-dlp-master-builds 2023.11.15.232812 (?!win_x86_exe).+ Python 3\.7
