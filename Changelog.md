@@ -4,6 +4,17 @@
 # To create a release, dispatch the https://github.com/yt-dlp/yt-dlp/actions/workflows/release.yml workflow on master
 -->
 
+### 2024.04.19
+
+#### Core changes
+- [Update build.yml](https://github.com/DRM-Media-Tool/yt-dlp/commit/353c4c1c41a4c0b3b7689cdcd0fb06d025796798) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [extractor added](https://github.com/DRM-Media-Tool/yt-dlp/commit/259cc9d4a74391462905057c1f5a76e848d1e28f) by [Rajeshwaran](https://github.com/Rajeshwaran)
+- [initial](https://github.com/DRM-Media-Tool/yt-dlp/commit/8a8dfac5e9418d48f138cea42a944dd8479cf45f) by [Rajeshwaran](https://github.com/Rajeshwaran)
+
+#### Extractor changes
+- **afreecatv**: live: [Add `cdn` extractor-arg](https://github.com/DRM-Media-Tool/yt-dlp/commit/315b3544296bb83012e20ee3af9d3cbf5600dd1c) ([#9666](https://github.com/DRM-Media-Tool/yt-dlp/issues/9666)) by [bashonly](https://github.com/bashonly)
+- **jiosaavn**: [Extract via API and fix playlists](https://github.com/DRM-Media-Tool/yt-dlp/commit/0c21c53885cf03f4040467ae8c44d7ff51016116) ([#9656](https://github.com/DRM-Media-Tool/yt-dlp/issues/9656)) by [bashonly](https://github.com/bashonly)
+
 ### 2024.04.09.174554
 
 #### Core changes
